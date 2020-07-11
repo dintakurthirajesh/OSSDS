@@ -1,0 +1,185 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="StateMaster.aspx.cs" Inherits="StateMaster" %>
+
+<%@ Register TagPrefix="menu" TagName="menu" Src="~/Admin/SAdmin.ascx" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<%@ Register TagPrefix="Footer" TagName="footer" Src="~/Footer.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>eLaabh</title>
+      <link href="../css/style1.css" rel="Stylesheet" type="text/css" />
+    <script src="../scripts/JQuery-1.8.3-min.js.js" type="text/javascript"></script>
+    <link href="../css/Menu1.css" rel="stylesheet" />
+    <script type="text/javascript">
+        history.pushState(null, null, 'StateMaster.aspx');
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, 'StateMaster.aspx');
+        });
+        $(document).ready(function () {
+
+            $("#btn_Save").live("click", function () {
+
+                $("#txtstateCode").prop('required', true);
+                $("#txtstateName").prop('required', true);
+            });
+            $("#btn_Update").live("click", function () {
+
+                $("#txtstateName").prop('required', true);
+            });
+        });
+        function Confirm(link) {
+
+            if (confirm("Are you sure you want to delete the record?")) {
+
+                return true;
+            }
+            else
+                return false;
+
+
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div align="center">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <table border="0" width="1100px" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+            <tr>
+                <td align="center">
+                    <img alt="" class="style64" src="../Images/lg_dire.jpg" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" bgcolor="#55A8BD" align="left">
+                    <menu:menu ID="menu1" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td align="left" class="userdate">
+                                <img src="../Images/14.gif" />
+                                <span style="color: green;">Logged As ::</span> &nbsp; <span>
+                                    <asp:Label ID="lblUsrName" ForeColor="#ab7d44" Font-Bold="true" runat="server" Text=""></asp:Label>&nbsp;</span>
+                            </td>
+                            <td align="right" bgcolor="White">
+                                <span style="color: green;">Date ::</span> &nbsp; <span>
+                                    <asp:Label ID="lblDate" ForeColor="#ab7d44" Font-Bold="true" runat="server" Text=""></asp:Label>&nbsp;</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" style="background-color: #3882a2; color: White; height: 30px;
+                                font-size: larger;">
+                                State Master
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%-- <asp:UpdatePanel ID="up1" runat="server">
+                        <ContentTemplate>--%>
+                    <div align="center">
+                        <table align="center" width="80%">
+                            <tr align="center">
+                                <td align="center">
+                                    <table class="tbldata" align="center" width="100%">
+                                        <tr>
+                                            <td colspan="2" align="center" style="color: Red">
+                                                Note:Fields marked with&nbsp;* &nbsp;are Compulsory.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" style="width: 50%;">
+                                                State Code<span style="color: Red">*</span>
+                                            </td>
+                                            <td align="left">
+                                                <asp:TextBox ID="txtstateCode" runat="server" CssClass="style_txt_entry" Font-Size="1.0em"
+                                                    Height="25px" MaxLength="2" placeholder="State Code" OnTextChanged="txtstateCode_TextChanged"></asp:TextBox>
+                                                <ajax:FilteredTextBoxExtender ID="txtstateCode_FilteredTextBoxExtender" runat="server"
+                                                    Enabled="True" TargetControlID="txtstateCode" FilterType="Numbers"></ajax:FilteredTextBoxExtender>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right">
+                                                State Name<span style="color: Red">*</span>
+                                            </td>
+                                            <td align="left">
+                                                <asp:TextBox ID="txtstateName" runat="server" MaxLength="75" Font-Size="1.0em" Height="25px"
+                                                    CssClass="style_txt_entry" placeholder="State Name"></asp:TextBox>
+                                                <ajax:FilteredTextBoxExtender ID="txtstateName_FilteredTextBoxExtender" runat="server"
+                                                    Enabled="True" TargetControlID="txtstateName" FilterType="UppercaseLetters, LowercaseLetters, Numbers, custom"
+                                                    ValidChars=" ."></ajax:FilteredTextBoxExtender>
+                                            </td>
+                                        </tr>
+                                        <tr align="center">
+                                            <td colspan="2">
+                                                <asp:Button ID="btn_Save" runat="server" Height="27px" Text="Save" OnClick="btn_Save_Click" />
+                                            </td>
+                                        </tr>
+                                        <tr align="center">
+                                            <td colspan="2">
+                                                <asp:Button ID="btn_Update" runat="server" CssClass="btnsubmit" Text="Update" OnClick="btn_Update_Click" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <%--   </ContentTemplate>
+                    </asp:UpdatePanel>--%>
+                </td>
+            </tr>
+            <tr align="center">
+                <td align="center">
+                    <table style="width: 80%;">
+                        <tr>
+                            <td align="center">
+                                <asp:GridView ID="GvSate" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                    BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px"
+                                    CellPadding="3" OnPageIndexChanging="GvSate_PageIndexChanging" OnRowCommand="GvSate_RowCommand"
+                                    Width="465px" PageSize="10" CellSpacing="2" CssClass="Grid">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="State Code">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblSCode" runat="server" Text='<%# Bind("StateCode") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="State Name">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblSName" runat="server" Text='<%# Bind("StateName") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                          <%--<asp:TemplateField HeaderText="Update/Delete" ShowHeader="False">
+                                          <EditItemTemplate>
+                                                                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Update" Text="Update"></asp:LinkButton>
+                                                                            <asp:LinkButton ID="btnCancel" runat="server" CommandName="Cancel" Text="Cancel"></asp:LinkButton>OnClick="lnkEdit_Click"
+                                                                        </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edt" Text="Edit"></asp:LinkButton>
+                                                <asp:LinkButton ID="btnDelete" runat="server" OnClientClick="return Confirm(this)"
+                                                    CommandName="Dlt" Text="Delete"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                    </Columns>
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 10px;">
+                    <Footer:footer ID="footer" runat="server"></Footer:footer>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

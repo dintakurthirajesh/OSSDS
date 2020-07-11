@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Telangana Kisan Portal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+    <!-- Wrapper -->
+    <div id="wrapper" >
+	<!-- Header -->
+       <header id="header" ><span class="avatar" ><img src="images/header1.png"/></span>
+	  
+	   <div style="margin-top:-5%;"><span class="avatar"><img src="images/cm.png" /></span>
+	   <span class="avatar" style="box-shadow: green 0px 0px 28px 1px;"><img src="images/raitu.png" /></span>
+	   <span class="avatar"><img src="images/minister.png" /></span></div>
+        					
+        <!-- Main -->
+        <section id="main">
+
+						<!-- Thumbnails -->
+							<!-- Thumbnails -->
+							<section class="thumbnails">
+								<div>
+								<a href="http://agri.telangana.gov.in/" target="_blank">
+										<img src="images/thumbs/agri_portal.png" alt="" />
+										<h3> Telangana Agri Portal</h3>
+									</a>
+									<a href="under.php" target="_blank">
+										<img src="images/thumbs/agrisnet.png" alt="" />
+										<h3>AGRISNET</h3>
+									</a>
+									
+									
+									<a href="http://farmer.gov.in/" target="_blank">
+										<img src="images/thumbs/goi.png" alt="" />
+										<h3>GOI Farmer Portal</h3>
+									</a>
+										<a href="http://www.agricoop.nic.in/" target="_blank">
+										<img src="images/thumbs/agri_coop.png" alt="" />
+										<h3>GOI Agriculture Cooperation & FW Portal</h3>
+										
+									</a>
+									
+
+														
+
+									
+								</div>
+								
+								<div>
+
+								<a href="http://kisan.telangana.gov.in/default.aspx" target="_blank">
+										<img src="images/thumbs/five-seeds.jpg" alt="" />
+										<h3> Online Seed Distribution</h3>
+									</a>
+									
+									
+									
+									
+								
+								
+									<a href="#" >
+										<img src="images/thumbs/vlr.png" alt="" />
+										<h3>Vaddi Leni Panta Runalu</h3>
+								</a>
+								<a href="http://www.agrionline.telangana.gov.in:8080/OLMS/" target="_blank" >
+										<img src="images/thumbs/olms.png" alt="" />
+										<h3>OLMS</h3>
+									</a>
+							
+									
+								<a href="http://lgdirectory.gov.in/" target="_blank">
+									<img src="images/thumbs/lg_directory.png" alt="" />
+										<h3>LG Directory</h3>
+									</a>	
+									</a>
+									
+									
+								
+								</div>
+								
+								<div>
+										<a href="http://www.soilhealth.dac.gov.in/" target="_blank">
+										<img src="images/thumbs/soil.jpg" alt="" />
+										<h3>Soil Health Card</h3>
+									</a>
+									<a href="http://www.nfsm.gov.in/" target="_blank">
+										<img src="images/thumbs/nfsm.png"  alt="" />
+										<h3> National Food Security Mission(NFSM)</h3>
+										
+									</a>
+									<a href="http://mkisan.gov.in/" target="_blank">
+										<img src="images/thumbs/mkisan.png" alt="" />
+										<h3> mKisan</h3>
+										
+									</a>
+									<a href="http://www.agri-insurance.gov.in/" target="_blank">
+										<img src="images/thumbs/crop_insurance.png" alt="" />
+										<h3>Crop Insurance</h3>
+										
+									</a>
+								
+								
+								
+								</div>
+								
+							</section>
+
+					</section>
+        <!-- Footer -->
+       </div>
+	    <footer id="footer">
+					<font color="white" size="4.8px"><b>Site Designed, Developed And Hosted By NIC (TS), Hyderabad. Content Owned, Maintained And Updated By Department Of Agriculture. Government Of Telangana.</b></font>
+					</footer><br>
+    
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

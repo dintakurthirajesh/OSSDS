@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="lgdistrict" targetNamespace="http://tempuri.org/lgdistrict.xsd" xmlns:mstns="http://tempuri.org/lgdistrict.xsd" xmlns="http://tempuri.org/lgdistrict.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="lgdistrict" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="lgdistrict" msprop:Generator_UserDSName="lgdistrict">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LGDistrict" msprop:Generator_TableClassName="LGDistrictDataTable" msprop:Generator_TableVarName="tableLGDistrict" msprop:Generator_TablePropName="LGDistrict" msprop:Generator_RowDeletingName="LGDistrictRowDeleting" msprop:Generator_RowChangingName="LGDistrictRowChanging" msprop:Generator_RowEvHandlerName="LGDistrictRowChangeEventHandler" msprop:Generator_RowDeletedName="LGDistrictRowDeleted" msprop:Generator_UserTableName="LGDistrict" msprop:Generator_RowChangedName="LGDistrictRowChanged" msprop:Generator_RowEvArgName="LGDistrictRowChangeEvent" msprop:Generator_RowClassName="LGDistrictRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DistCode" msprop:Generator_ColumnVarNameInTable="columnDistCode" msprop:Generator_ColumnPropNameInRow="DistCode" msprop:Generator_ColumnPropNameInTable="DistCodeColumn" msprop:Generator_UserColumnName="DistCode" type="xs:string" minOccurs="0" />
+              <xs:element name="DistName" msprop:Generator_ColumnVarNameInTable="columnDistName" msprop:Generator_ColumnPropNameInRow="DistName" msprop:Generator_ColumnPropNameInTable="DistNameColumn" msprop:Generator_UserColumnName="DistName" type="xs:string" minOccurs="0" />
+              <xs:element name="DistCode_Lg" msprop:Generator_ColumnVarNameInTable="columnDistCode_Lg" msprop:Generator_ColumnPropNameInRow="DistCode_Lg" msprop:Generator_ColumnPropNameInTable="DistCode_LgColumn" msprop:Generator_UserColumnName="DistCode_Lg" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

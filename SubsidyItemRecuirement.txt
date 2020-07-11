@@ -1,0 +1,3 @@
+caste  multi selection
+genter
+percentage 

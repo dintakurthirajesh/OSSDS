@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Seed_UI", "Seed_UI\", "{AEC57ECB-0810-4458-9F53-626C4EF6A769}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "Svn"
+		SccAuxPath = "Svn"
+		SccLocalPath = "Svn"
+		SccProvider = "SubversionScc"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{7B353B9E-8B29-42D0-86D8-FD25FB4361BA}|Seed_BE.dll;{B89B211C-EB75-430A-A6FB-306A02C3B6EC}|Seed_BL.dll;{611BFD91-579F-413E-8E42-C9D924569BB8}|Seed_DL.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/Seed_UI"
+		Debug.AspNetCompiler.PhysicalPath = "Seed_UI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Seed_UI\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Seed_UI"
+		Release.AspNetCompiler.PhysicalPath = "Seed_UI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Seed_UI\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "18019"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seed_DL", "Seed_DL\Seed_DL.csproj", "{611BFD91-579F-413E-8E42-C9D924569BB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seed_BL", "Seed_BL\Seed_BL.csproj", "{B89B211C-EB75-430A-A6FB-306A02C3B6EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seed_BE", "Seed_BE\Seed_BE.csproj", "{7B353B9E-8B29-42D0-86D8-FD25FB4361BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEC57ECB-0810-4458-9F53-626C4EF6A769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC57ECB-0810-4458-9F53-626C4EF6A769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC57ECB-0810-4458-9F53-626C4EF6A769}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC57ECB-0810-4458-9F53-626C4EF6A769}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{611BFD91-579F-413E-8E42-C9D924569BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{611BFD91-579F-413E-8E42-C9D924569BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{611BFD91-579F-413E-8E42-C9D924569BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{611BFD91-579F-413E-8E42-C9D924569BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B89B211C-EB75-430A-A6FB-306A02C3B6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B89B211C-EB75-430A-A6FB-306A02C3B6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B89B211C-EB75-430A-A6FB-306A02C3B6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B89B211C-EB75-430A-A6FB-306A02C3B6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B353B9E-8B29-42D0-86D8-FD25FB4361BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B353B9E-8B29-42D0-86D8-FD25FB4361BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B353B9E-8B29-42D0-86D8-FD25FB4361BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B353B9E-8B29-42D0-86D8-FD25FB4361BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

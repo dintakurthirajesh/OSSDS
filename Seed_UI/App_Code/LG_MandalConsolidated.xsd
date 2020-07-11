@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LG_MandalConsolidated" targetNamespace="http://tempuri.org/LG_MandalConsolidated.xsd" xmlns:mstns="http://tempuri.org/LG_MandalConsolidated.xsd" xmlns="http://tempuri.org/LG_MandalConsolidated.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LG_MandalConsolidated" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="LG_MandalConsolidated" msprop:Generator_UserDSName="LG_MandalConsolidated">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="LG_Mandal_Consolidated" msprop:Generator_TableClassName="LG_Mandal_ConsolidatedDataTable" msprop:Generator_TableVarName="tableLG_Mandal_Consolidated" msprop:Generator_TablePropName="LG_Mandal_Consolidated" msprop:Generator_RowDeletingName="LG_Mandal_ConsolidatedRowDeleting" msprop:Generator_RowChangingName="LG_Mandal_ConsolidatedRowChanging" msprop:Generator_RowEvHandlerName="LG_Mandal_ConsolidatedRowChangeEventHandler" msprop:Generator_RowDeletedName="LG_Mandal_ConsolidatedRowDeleted" msprop:Generator_UserTableName="LG_Mandal_Consolidated" msprop:Generator_RowChangedName="LG_Mandal_ConsolidatedRowChanged" msprop:Generator_RowEvArgName="LG_Mandal_ConsolidatedRowChangeEvent" msprop:Generator_RowClassName="LG_Mandal_ConsolidatedRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DistName" msprop:Generator_ColumnVarNameInTable="columnDistName" msprop:Generator_ColumnPropNameInRow="DistName" msprop:Generator_ColumnPropNameInTable="DistNameColumn" msprop:Generator_UserColumnName="DistName" type="xs:string" minOccurs="0" />
+              <xs:element name="DistCode" msprop:Generator_ColumnVarNameInTable="columnDistCode" msprop:Generator_ColumnPropNameInRow="DistCode" msprop:Generator_ColumnPropNameInTable="DistCodeColumn" msprop:Generator_UserColumnName="DistCode" type="xs:string" minOccurs="0" />
+              <xs:element name="DistCode_LG" msprop:Generator_ColumnVarNameInTable="columnDistCode_LG" msprop:Generator_ColumnPropNameInRow="DistCode_LG" msprop:Generator_ColumnPropNameInTable="DistCode_LGColumn" msprop:Generator_UserColumnName="DistCode_LG" type="xs:string" minOccurs="0" />
+              <xs:element name="MandName" msprop:Generator_ColumnVarNameInTable="columnMandName" msprop:Generator_ColumnPropNameInRow="MandName" msprop:Generator_ColumnPropNameInTable="MandNameColumn" msprop:Generator_UserColumnName="MandName" type="xs:string" minOccurs="0" />
+              <xs:element name="MandCode_LG" msprop:Generator_ColumnVarNameInTable="columnMandCode_LG" msprop:Generator_ColumnPropNameInRow="MandCode_LG" msprop:Generator_ColumnPropNameInTable="MandCode_LGColumn" msprop:Generator_UserColumnName="MandCode_LG" type="xs:string" minOccurs="0" />
+              <xs:element name="villagecount" msprop:Generator_ColumnVarNameInTable="columnvillagecount" msprop:Generator_ColumnPropNameInRow="villagecount" msprop:Generator_ColumnPropNameInTable="villagecountColumn" msprop:Generator_UserColumnName="villagecount" type="xs:string" minOccurs="0" />
+              <xs:element name="totvillagelgcodeupdate" msprop:Generator_ColumnVarNameInTable="columntotvillagelgcodeupdate" msprop:Generator_ColumnPropNameInRow="totvillagelgcodeupdate" msprop:Generator_ColumnPropNameInTable="totvillagelgcodeupdateColumn" msprop:Generator_UserColumnName="totvillagelgcodeupdate" type="xs:string" minOccurs="0" />
+              <xs:element name="gpcount" msprop:Generator_ColumnVarNameInTable="columngpcount" msprop:Generator_ColumnPropNameInRow="gpcount" msprop:Generator_ColumnPropNameInTable="gpcountColumn" msprop:Generator_UserColumnName="gpcount" type="xs:string" minOccurs="0" />
+              <xs:element name="totgplgcodeupdate" msprop:Generator_ColumnVarNameInTable="columntotgplgcodeupdate" msprop:Generator_ColumnPropNameInRow="totgplgcodeupdate" msprop:Generator_ColumnPropNameInTable="totgplgcodeupdateColumn" msprop:Generator_UserColumnName="totgplgcodeupdate" type="xs:string" minOccurs="0" />
+              <xs:element name="MandCode" msprop:Generator_ColumnVarNameInTable="columnMandCode" msprop:Generator_ColumnPropNameInRow="MandCode" msprop:Generator_ColumnPropNameInTable="MandCodeColumn" msprop:Generator_UserColumnName="MandCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

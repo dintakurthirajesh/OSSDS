@@ -1,0 +1,172 @@
+﻿using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Configuration;
+using System.Data;
+using Seed_BL;
+
+/// <summary> 
+/// Summary description for OSSDS_WebService
+/// </summary>
+[WebService(Namespace = "")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+// [System.Web.Script.Services.ScriptService]
+public class OSSDS_WebService : System.Web.Services.WebService {
+
+    ReportsBL rprt = new ReportsBL();
+    DataTable dt = new DataTable();
+    public OSSDS_WebService () {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+    [WebMethod]
+    public string OSSDS_CMDASHBOARD()
+    {
+        return GetData();
+    }
+     public string GetData()
+     {
+        dt = new DataTable();
+      
+        StringBuilder strb = new StringBuilder();
+        StringBuilder strb1 = new StringBuilder();
+        strb.Append("<RetDMDashCaption>");
+        strb1.Append("<RetDMDashStateGraph>");
+        try
+        {
+            dt = rprt.SrvcCM_Dashboard();
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count - 1; i++)
+                {
+                    strb.Append("<DASH>");
+                    strb.Append("<state_code>36 </state_code>");
+                    strb.Append("<District_code>" + dt.Rows[i][0].ToString() + " </District_code>");
+                    strb.Append("<teh_code> 0 </teh_code>");
+                    strb.Append("<blk_code> 0 </blk_code>");
+                    strb.Append("<sector_code> 2 </sector_code>"); //
+                    strb.Append("<dept_code> 37 </dept_code>"); //
+                    strb.Append("<Project_code> 100368 </Project_code>");
+
+                    strb.Append("<cnt1>" + dt.Rows[i][1].ToString() + " </cnt1>");//Permits
+                    strb.Append("<cnt2>" + dt.Rows[i][2].ToString() + " </cnt2>");//Seed Distributed
+                    strb.Append("<cnt3>" + dt.Rows[i][3].ToString() + " </cnt3>");//Value of Seed
+                    strb.Append("<cnt4>" + dt.Rows[i][4].ToString() + " </cnt4>");//Value of Subsidy
+                    strb.Append("<cnt5> 0 </cnt5>");
+
+                    strb.Append("<dataportmode> 4 </dataportmode>");
+                    strb.Append("<modedesc> " + (DateTime.Today.AddDays(-1)).Day + " </modedesc>");
+                    strb.Append("<data_lvl_code> 1 </data_lvl_code>");
+                    strb.Append("<yr> " + (DateTime.Today.AddDays(-1)).Year + " </yr>");
+                    strb.Append("<mnth> " + (DateTime.Today.AddDays(-1)).Month + " </mnth>");
+
+                    strb.Append("</DASH>");
+
+                    //Graph
+                    //strb1.Append("<SDASH>");
+                    //strb1.Append("<state_code>36 </state_code>");
+                    //strb1.Append("<District_code>" + dt.Rows[i][0].ToString() + " </District_code>");
+                    //strb1.Append("<teh_code> 0 </teh_code>");
+                    //strb1.Append("<blk_code> 0 </blk_code>");
+                    //strb1.Append("<sector_code> 1 </sector_code>"); //
+                    //strb1.Append("<dept_code> 1 </dept_code>"); //
+                    //strb1.Append("<Project_code> 1 </Project_code>");
+
+                    //strb1.Append("<cnt1>" + dt.Rows[i][1].ToString() + " </cnt1>");
+                    //strb1.Append("<cnt2>" + dt.Rows[i][3].ToString() + " </cnt2>");
+                    //strb1.Append("<cnt3>" + dt.Rows[i][2].ToString() + " </cnt3>");
+                    ////strb.Append("<cnt4>" + dt.Rows[i][4].ToString() + " </cnt4>");
+
+                    //strb1.Append("<dataportmode> 4 </dataportmode>");
+                    //strb1.Append("<modedesc> " + (DateTime.Now.Day - 1) + " </modedesc>");
+                    //strb1.Append("<data_lvl_code> 1 </data_lvl_code>");
+                    //strb1.Append("<yr> " + DateTime.Now.Year.ToString() + " </yr>");
+                    //strb1.Append("<mnth> " + DateTime.Now.Month.ToString() + " </mnth>");
+
+                    //strb1.Append("</SDASH>");
+
+                   
+                }
+            }
+            else
+            {
+                strb.Append("0");
+                strb1.Append("0");
+            }
+            strb.Append("</RetDMDashCaption>");
+            strb1.Append("</RetDMDashStateGraph>");
+            //strb.Append(strb1);          
+
+
+            return strb.ToString();
+        }
+        catch (Exception ex)
+        {
+            throw new SoapException(ex.Message, SoapException.ServerFaultCode, Context.Request.Url.AbsoluteUri);
+        }
+    }
+}
+
+
+    
+
+    ////Graph
+    //[WebMethod]
+    //public XmlDocument RetDMDashStateGraph()
+    //{
+    //    dt = new DataTable();
+    //    XmlDocument xml = new XmlDocument();
+    //    StringBuilder strb = new StringBuilder();
+    //    strb.Append("<RetDMDashStateGraph>");
+    //    try
+    //    {
+    //        dt = rprt.SrvcCM_Dashboard();
+    //        if (dt.Rows.Count > 0)
+    //        {
+    //            for (int i = 0; i < dt.Rows.Count - 1; i++)
+    //            {
+    //                strb.Append("<SDASH>");
+    //                strb.Append("<state_code>36 </state_code>");
+    //                strb.Append("<District_code>" + dt.Rows[i][0].ToString() + " </District_code>");
+    //                strb.Append("<teh_code> 0 </teh_code>");
+    //                strb.Append("<blk_code> 0 </blk_code>");
+    //                strb.Append("<sector_code> 1 </sector_code>"); //
+    //                strb.Append("<dept_code> 1 </dept_code>"); //
+    //                strb.Append("<Project_code> 1 </Project_code>");
+
+    //                strb.Append("<cnt1>" + dt.Rows[i][1].ToString() + " </cnt1>");
+    //                strb.Append("<cnt2>" + dt.Rows[i][2].ToString() + " </cnt2>");
+    //                strb.Append("<cnt3>" + dt.Rows[i][3].ToString() + " </cnt3>");
+    //                strb.Append("<cnt4>" + dt.Rows[i][4].ToString() + " </cnt4>");
+
+    //                strb.Append("<dataportmode> 4 </dataportmode>");
+    //                strb.Append("<modedesc> " + DateTime.Now.Day.ToString() + " </modedesc>");
+    //                strb.Append("<data_lvl_code> 1 </data_lvl_code>");
+    //                strb.Append("<yr> " + DateTime.Now.Year.ToString() + " </yr>");
+    //                strb.Append("<mnth> " + DateTime.Now.Month.ToString() + " </mnth>");
+
+    //                strb.Append("</SDASH>");
+    //            }
+    //        }
+    //        else
+    //            strb.Append("0");
+    //        strb.Append("</RetDMDashStateGraph>");
+    //        xml.LoadXml(strb.ToString());
+
+    //        return xml;
+
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw new SoapException(ex.Message, SoapException.ServerFaultCode, Context.Request.Url.AbsoluteUri);
+    //    }
+    //}
+
+

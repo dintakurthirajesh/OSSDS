@@ -1,0 +1,180 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddVillageCodes.aspx.cs"
+    Inherits="AddVillageCodes" %>
+
+<%@ Register TagPrefix="menu" TagName="menu" Src="~/Admin/Admin.ascx" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<%@ Register TagPrefix="Footer" TagName="footer" Src="~/Footer.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Village Codes</title>
+    <link href="../Styles/Styl.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .style1
+        {
+            text-decoration: underline;
+            height: 30px;
+            font-size: x-large;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div align="center">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <table border="0" width="1100px" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+            <tr>
+                <td colspan="4" align="center">
+                    <img alt="" class="style64" src="../Images/elaabh_new.png" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" bgcolor="#55A8BD" align="left">
+                    <menu:menu ID="menu1" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <th colspan="4">
+                    <h1 class="style1">
+                        <strong>Add Village Codes By District/Mandal</strong></h1>
+                </th>
+            </tr>
+            <tr>
+                <td align="right">
+                    Select District<span class="red">*</span>
+                </td>
+                <td align="left">
+                    <asp:DropDownList ID="ddldist" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddldist_SelectedIndexChanged"
+                        CssClass="style_txt_entry">
+                    </asp:DropDownList>
+                </td>
+                <td align="right">
+                    Select Mandal <span class="red">*</span>
+                </td>
+                <td align="left">
+                    <asp:DropDownList ID="ddlmand" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlmand_SelectedIndexChanged"
+                        CssClass="style_txt_entry">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:GridView Width="70%" ID="gvVillages" runat="server" CellPadding="4" ForeColor="#333333"
+                        GridLines="None" AutoGenerateColumns="false" CssClass="Grid" ShowFooter="true"
+                        Caption="Villages for Which LG Codes Yet to be Entered">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sno">
+                                <ItemTemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="District" DataField="DistName" />
+                            <asp:BoundField HeaderText="Mandal" DataField="MandName" />
+                            <asp:BoundField HeaderText="Village" DataField="VillName" />
+                            <asp:TemplateField HeaderText="Existing Village Code">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblVillcode" Text='<%# Eval("VillCode") %>' runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="New Village Code">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtVillcode" CssClass="style_txt_entry" MaxLength="6" runat="server"></asp:TextBox>
+                                    <ajax:FilteredTextBoxExtender ID="txtVillcode_FilteredTextBoxExtender" runat="server"
+                                        Enabled="True" TargetControlID="txtVillcode" FilterType="Numbers" ValidChars=" ">
+                                    </ajax:FilteredTextBoxExtender>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:Button ID="Btn_Save" runat="server" Text="Save" OnClick="Button1_Click" />
+                    <%-- <asp:Button ID="Btn_Update" runat="server" Text="Update" OnClick="Update_Click" />--%>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:Label ID="lblmsg" runat="server" class="red"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:GridView ID="GridView1" DataKeyNames="DistCode,MandCode,VillCode " runat="server"
+                        CellPadding="4" ForeColor="#333333" CssClass="Grid" AllowSorting="true" GridLines="None"
+                        AutoGenerateColumns="False" Width="70%" OnRowEditing="EditRow" OnRowCancelingEdit="CancelEditRow"
+                        OnRowUpdating="UpdateRow" OnRowCommand="GridView1_RowCommand" Caption="All Villages in the Selected District/Mandal">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="SlNo">
+                                <ItemTemplate>
+                                    <%#Container.DataItemIndex+1 %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="District">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbldistcode" runat="server" Visible="false" Text='<%# Bind("DistCode") %>'></asp:Label>
+                                    <asp:Label ID="lbldist" runat="server" Text='<%# Bind("DistName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Mandal">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblmandcode" runat="server" Visible="false" Text='<%# Bind("MandCode") %>'></asp:Label>
+                                    <asp:Label ID="lblmand" runat="server" Text='<%# Bind("MandName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Old Code">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblvillcode" runat="server" Visible="false" Text='<%# Bind("VillCode") %>'></asp:Label>
+                                    <asp:Label ID="lblvill" runat="server" Text='<%# Bind("VillName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="LG Code">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblcode" runat="server" Text='<%# Bind("VillCode_LG") %>'></asp:Label>
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtlgcode" CssClass="style_txt_entry" MaxLength="6" Text='<%# Bind("VillCode_LG") %>'
+                                        runat="server"></asp:TextBox>
+                                    <ajax:FilteredTextBoxExtender ID="txtlgcode_FilteredTextBoxExtender" runat="server"
+                                        Enabled="True" TargetControlID="txtlgcode" FilterType="Numbers" ValidChars=" ">
+                                    </ajax:FilteredTextBoxExtender>
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Edit">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CommandName="Edit" />
+                                </ItemTemplate>
+                                <EditItemTemplate>
+                                    <asp:LinkButton ID="lnkUpdate" runat="server" Text="Update" CommandName="Update" />
+                                    <asp:LinkButton ID="lnkCancel" runat="server" Text="Cancel" CommandName="Cancel" />
+                                </EditItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <span onclick="return confirm('Are you sure to delete?')">
+                                        <asp:LinkButton ID="btnDelete" runat="server" CommandName="Dlt" Text="Delete"></asp:LinkButton>
+                                    </span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

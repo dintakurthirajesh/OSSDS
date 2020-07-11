@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Salepointwisefarmerdetails" targetNamespace="http://tempuri.org/Salepointwisefarmerdetails.xsd" xmlns:mstns="http://tempuri.org/Salepointwisefarmerdetails.xsd" xmlns="http://tempuri.org/Salepointwisefarmerdetails.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Salepointwisefarmerdetails" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Salepointwisefarmerdetails" msprop:Generator_DataSetName="Salepointwisefarmerdetails">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="salepointwisefarmerdet" msprop:Generator_TableClassName="salepointwisefarmerdetDataTable" msprop:Generator_TableVarName="tablesalepointwisefarmerdet" msprop:Generator_TablePropName="salepointwisefarmerdet" msprop:Generator_RowDeletingName="salepointwisefarmerdetRowDeleting" msprop:Generator_RowChangingName="salepointwisefarmerdetRowChanging" msprop:Generator_RowEvHandlerName="salepointwisefarmerdetRowChangeEventHandler" msprop:Generator_RowDeletedName="salepointwisefarmerdetRowDeleted" msprop:Generator_UserTableName="salepointwisefarmerdet" msprop:Generator_RowChangedName="salepointwisefarmerdetRowChanged" msprop:Generator_RowEvArgName="salepointwisefarmerdetRowChangeEvent" msprop:Generator_RowClassName="salepointwisefarmerdetRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="farmer" msprop:Generator_ColumnVarNameInTable="columnfarmer" msprop:Generator_ColumnPropNameInRow="farmer" msprop:Generator_ColumnPropNameInTable="farmerColumn" msprop:Generator_UserColumnName="farmer" type="xs:string" minOccurs="0" />
+              <xs:element name="crop" msprop:Generator_ColumnVarNameInTable="columncrop" msprop:Generator_ColumnPropNameInRow="crop" msprop:Generator_ColumnPropNameInTable="cropColumn" msprop:Generator_UserColumnName="crop" type="xs:string" minOccurs="0" />
+              <xs:element name="no_of_bags_purchased" msprop:Generator_ColumnVarNameInTable="columnno_of_bags_purchased" msprop:Generator_ColumnPropNameInRow="no_of_bags_purchased" msprop:Generator_ColumnPropNameInTable="no_of_bags_purchasedColumn" msprop:Generator_UserColumnName="no_of_bags_purchased" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount_paid" msprop:Generator_ColumnVarNameInTable="columnAmount_paid" msprop:Generator_ColumnPropNameInRow="Amount_paid" msprop:Generator_ColumnPropNameInTable="Amount_paidColumn" msprop:Generator_UserColumnName="Amount_paid" type="xs:string" minOccurs="0" />
+              <xs:element name="issued_date" msprop:Generator_ColumnVarNameInTable="columnissued_date" msprop:Generator_ColumnPropNameInRow="issued_date" msprop:Generator_ColumnPropNameInTable="issued_dateColumn" msprop:Generator_UserColumnName="issued_date" type="xs:string" minOccurs="0" />
+              <xs:element name="sp_code" msprop:Generator_ColumnVarNameInTable="columnsp_code" msprop:Generator_ColumnPropNameInRow="sp_code" msprop:Generator_ColumnPropNameInTable="sp_codeColumn" msprop:Generator_UserColumnName="sp_code" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

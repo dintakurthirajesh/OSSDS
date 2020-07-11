@@ -1,0 +1,397 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Seed_BL;
+using Seed_DL;
+using Seed_BE;
+using System.Data;
+using System.Web.Security;
+
+using System.Configuration;
+
+
+public partial class Admin_VillageMaster : System.Web.UI.Page
+{
+    LocationBAL objDist = new LocationBAL();
+    LocationDAL objDistin = new LocationDAL();
+    LocationBE objinsert = new LocationBE();
+    CommonFuncs objCommon = new CommonFuncs();
+    Validate objValidate = new Validate();
+   // gpEntry entry = new gpEntry();
+    DataTable ddt;
+    ListItem li;
+    string StateCode = "", Flag_IUP, UserName = "";
+    string INSERT, UPDATE, DELETE;
+//    string ConnKey = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+    IFormatProvider provider = new System.Globalization.CultureInfo("fr-FR", true);
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            if ((Request.ServerVariables["HTTP_REFERER"] == null) || (Request.ServerVariables["HTTP_REFERER"] == ""))
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            else
+            {
+                string http_ref = Request.ServerVariables["HTTP_REFERER"].Trim();
+                string http_hos = Request.ServerVariables["HTTP_HOST"].Trim();
+                int len = http_hos.Length;
+                if (http_ref.IndexOf(http_hos, 0) < 0)
+                {
+                    Response.Redirect("~/Error.aspx");
+                }
+            }
+           // if (Session["Role"].ToString() == null || Session["Role"].ToString() != "1")
+            if (Session["Role"].ToString() == null || Session["Role"].ToString() != "Commissionerate, Seeds")
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            lblUsrName.Text = Session["UsrName"].ToString();
+            lblDate.Text = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            if (!IsPostBack)
+            {
+                StateCode = Session["StateCode"].ToString();
+                UserName = Session["UsrName"].ToString();
+                ddt = objDist.getDistrictsByStateCodeBAL(Session["StateCode"].ToString());
+                objCommon.BindDropDownLists(ddl_dist_code, ddt, "DistName", "DistCode", "0");
+                btn_Update.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+    }
+   
+    protected void btn_Save_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ValidatePage())
+            {
+                DataTable dt = new DataTable();
+           //dt = objDist.InsertVillage(ddl_dist_code.SelectedValue, ddlmand.SelectedValue, txtvillcode.Text.Trim(), txtvillname.Text.Trim(), ConnKey);
+               
+                INSERT = "I";
+                UserName = Session["UsrName"].ToString();
+              //  int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+               // DataTable dt = new DataTable();
+
+               string strdate =System.DateTime.Now.ToString("dd/MM/yyyy");
+               DateTime date = DateTime.Parse(strdate, provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+
+                objinsert.distlgcd = ddl_dist_code.SelectedValue;
+                objinsert.mandalcd = ddlmand.SelectedValue;
+                objinsert.villagecd = txtvillcode.Text.Trim();
+                objinsert.villagename = txtvillname.Text.Trim();
+                objinsert.villagelgcd = txtvilllgcode.Text;
+                objinsert.efct_dt = date;
+                objinsert.userid = Session["UsrName"].ToString();
+                objinsert.active = 1;
+                objinsert.Flage = INSERT;
+                dt = objDistin.insertvillageDAL(objinsert);
+                if (dt.Rows.Count > 0)
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                else
+                {
+                    objCommon.ShowAlertMessage("Village Inseted");
+                   
+                    txtvillcode.Text = "";
+                    txtvillname.Text = "";
+                    BindGrid();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+    }
+    protected void ddl_dist_code_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddl_dist_code.SelectedIndex > 0)
+        {
+            DataTable dt = new DataTable();
+            dt = objDist.getMandalsByDistCodeBAL(ddl_dist_code.SelectedValue);
+            objCommon.BindDropDownLists(ddlmand, dt, "MandName", "MandCode", "Select Mandal");
+        }
+        else
+             objCommon.ShowAlertMessage("Select District");             
+    }
+    protected void ddl_mand_code_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddl_dist_code.SelectedIndex != 0 && ddlmand.SelectedIndex != 0)
+        {
+            BindGrid();
+        }
+    }
+    protected void BindGrid()
+    {
+        DataTable dtt = new DataTable();
+        dtt.Clear();
+        dtt.Columns.Clear();
+
+      //  dtt = entry.GetVillages(ddl_dist_code.SelectedValue, ddlmand.SelectedValue, "", "B");
+        if (dtt.Rows.Count > 0)
+        {
+            GvVillage.DataSource = dtt;
+            GvVillage.EditIndex = -1;
+            GvVillage.DataBind();
+        }
+        else
+        {
+            GvVillage.DataSource = null;
+            GvVillage.DataBind();
+        }
+
+        //DataTable dtm = new DataTable();
+        //dtm = entry.GetVillages(ddl_dist_code.SelectedValue, ddlmand.SelectedValue, ConnKey, "MV");
+        //if (dtm.Rows.Count > 0)
+        //{
+        //    string vcode = dtm.Rows[0]["MaxVillcd"].ToString();
+        //    if (vcode != "")
+        //    {
+        //        int vcd = Convert.ToInt32(vcode);
+        //        vcd = vcd + 1;
+
+        //        if (vcd < 10)
+        //        {
+        //            vcode = "00" + Convert.ToString(vcd);
+        //        }
+        //        else if(vcd > 10 && vcd < 100)
+        //        {
+        //            vcode = "0" + Convert.ToString(vcd);
+        //        }
+        //        else 
+        //        {
+        //            vcode = Convert.ToString(vcd);
+        //        }
+
+        //        txtvillcode.Text = vcode;
+        //    }
+        //    else
+        //    {
+        //        txtvillcode.Text = "001";
+        //    }
+
+
+        //    //if (Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) > 0 && Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) <= 9)
+        //    //{
+        //    //    txtvillcode.Text = "00" + Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) + 1;
+        //    //}
+        //    //else if (Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) >=10  && Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) <= 99)
+        //    //{
+        //    //    txtvillcode.Text = "0" + Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) + 1;
+        //    //}
+        //    //else if (Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) >= 100 && Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) <= 999)
+        //    //{
+        //    //    txtvillcode.Text = "0" + Convert.ToInt32(dtm.Rows[0]["MaxVillcd"].ToString()) + 1;
+        //    //}
+        //}
+    }
+    protected void lnkEdit_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            LinkButton btnsubmit = sender as LinkButton;
+            GridViewRow gRow = (GridViewRow)btnsubmit.NamingContainer;
+            lbldistcode.Text = ((Label)(gRow.FindControl("lbldistcode"))).Text;
+            lblmandcode.Text = ((Label)(gRow.FindControl("lblmandcode"))).Text;
+            ddlmand.SelectedValue = lblmandcode.Text;
+            ddl_dist_code.SelectedValue = lbldistcode.Text;
+            ddl_dist_code.Enabled = false;
+            ddlmand.Enabled = false;
+            txtvillname.Text = ((Label)(gRow.FindControl("lblvillname"))).Text;
+            txtvillcode.Enabled = false;
+            txtvillcode.Text = ((Label)(gRow.FindControl("lblcode"))).Text;
+         
+            btn_Update.Visible = true;
+            btn_Save.Visible = false;           
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+    }
+    protected bool ValidatePage()
+    {
+        if (ddl_dist_code.SelectedValue == "0")
+        {
+            objCommon.ShowAlertMessage("Select District");
+            ddl_dist_code.Focus();
+            return false;
+        }
+        if (ddlmand.SelectedIndex==0)
+        {
+            objCommon.ShowAlertMessage("Select Mandal ");
+            ddlmand.Focus();
+            return false;
+        }
+        if (txtvillcode.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter Village Code");
+            txtvillcode.Focus();
+            return false;
+        }
+        if (txtvillname.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter Village Name");
+            txtvillname.Focus();
+            return false;
+        }  
+        return true;
+    }
+    protected void btn_Update_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ValidatePage())
+            {
+                //string StateCode = Session["StateCode"].ToString();
+                //string UserName = Session["UsrName"].ToString();
+                //DataTable dt = new DataTable();
+                //dt = entry.UpdateVillage(ddl_dist_code.SelectedValue, ddlmand.SelectedValue, txtvillcode.Text.Trim(), txtvillname.Text.Trim(),ConnKey);
+                //if (dt.Rows.Count < 0)
+                //{
+                //    objCommon.ShowAlertMessage("Village Updated");
+                //    //ddl_dist_code.SelectedIndex = 0;
+                //    //ddlmand.SelectedIndex = 0;
+                //    ddlmand.Enabled = true;
+                //    ddl_dist_code.Enabled = true;
+                //    txtvillcode.Text = "";
+                //    txtvillname.Text = "";
+                //    BindGrid();
+                //}
+                //else
+                //{
+                //    objCommon.ShowAlertMessage("Village Name already Exists");
+                //    BindGrid();
+                //}
+                if (ValidatePage())
+                {
+                    DataTable dt = new DataTable();
+                    //      dt = objDist.InsertVillage(ddl_dist_code.SelectedValue, ddlmand.SelectedValue, txtvillcode.Text.Trim(), txtvillname.Text.Trim(), ConnKey);
+
+                    INSERT = "U";
+                    UserName = Session["UsrName"].ToString();
+                    //  int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+                    // DataTable dt = new DataTable();
+
+                    string strdate = System.DateTime.Now.ToString("dd/MM/yyyy");
+                    DateTime date = DateTime.Parse(strdate, provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+
+                    objinsert.distlgcd = ddl_dist_code.SelectedValue;
+                    objinsert.mandalcd = ddlmand.SelectedValue;
+                    objinsert.villagecd = txtvillcode.Text.Trim();
+                    objinsert.villagename = txtvillname.Text.Trim();
+                    objinsert.villagelgcd = txtvilllgcode.Text;
+                    objinsert.efct_dt = date;
+                    objinsert.userid = UserName;
+                    objinsert.active = 1;
+                    objinsert.Flage = INSERT;
+                    dt = objDistin.insertvillageDAL(objinsert);
+                    if (dt.Rows.Count > 0)
+                        objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    else
+                    {
+                        objCommon.ShowAlertMessage("Village Name already Exists");
+                        txtvilllgcode.Text = "";
+                        txtvillcode.Text = "";
+                        txtvillname.Text = "";
+                        BindGrid();
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+    protected void GvVillage_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GvVillage.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
+    protected void GvVillage_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "Dlt")
+        {
+            DataTable dt = new DataTable();
+            GridViewRow gRow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+        
+            string dist  = ((Label)(gRow.FindControl("lbldistcode"))).Text;
+            string mand = ((Label)(gRow.FindControl("lblmandcode"))).Text;
+            string villcode = ((Label)(gRow.FindControl("lblcode"))).Text;
+      
+            objinsert.distlgcd = dist;
+            objinsert.mandalcd = mand;
+            objinsert.villagecd = villcode;
+            dt = objDistin.insertvillageDAL(objinsert);
+            if (dt.Rows.Count > 0)
+            {
+                objCommon.ShowAlertMessage("Village deleted");
+                BindGrid();
+            }
+            else
+            {
+                objCommon.ShowAlertMessage("Village not deleted");
+                BindGrid();
+            }
+        }
+    }
+    protected void rblSortorder_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string flag = "";
+
+        if (rblSortorder.SelectedValue == "A")
+        {
+            flag = "BA";
+        }
+        else if (rblSortorder.SelectedValue == "D")
+        {
+            flag = "BD";
+        }
+        else if (rblSortorder.SelectedValue == "AN")
+        {
+            flag = "AN";
+        }
+        else if (rblSortorder.SelectedValue == "DN")
+        {
+            flag = "DN";
+        }
+        else
+        {
+            flag = "B";
+        }
+
+        DataTable dtt = new DataTable();
+        dtt.Clear();
+        dtt.Columns.Clear();
+
+        //dtt = entry.GetVillages(ddl_dist_code.SelectedValue, ddlmand.SelectedValue, ConnKey, flag);
+        //if (dtt.Rows.Count > 0)
+        //{
+        //    GvVillage.DataSource = dtt;
+        //    GvVillage.EditIndex = -1;
+        //    GvVillage.DataBind();
+        //}
+        //else
+        //{
+        //    GvVillage.DataSource = null;
+        //    GvVillage.DataBind();
+        //}
+    }
+    
+}

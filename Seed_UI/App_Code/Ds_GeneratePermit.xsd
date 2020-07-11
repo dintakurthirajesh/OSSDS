@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ds_GeneratePermit" targetNamespace="http://tempuri.org/Ds_GeneratePermit.xsd" xmlns:mstns="http://tempuri.org/Ds_GeneratePermit.xsd" xmlns="http://tempuri.org/Ds_GeneratePermit.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="seedsubsidyConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="seedsubsidyConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.seedsubsidyConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ds_GeneratePermit" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Ds_GeneratePermit" msprop:Generator_UserDSName="Ds_GeneratePermit">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RDLC_GeneratePermit" msprop:Generator_TableClassName="RDLC_GeneratePermitDataTable" msprop:Generator_TableVarName="tableRDLC_GeneratePermit" msprop:Generator_TablePropName="RDLC_GeneratePermit" msprop:Generator_RowDeletingName="RDLC_GeneratePermitRowDeleting" msprop:Generator_RowChangingName="RDLC_GeneratePermitRowChanging" msprop:Generator_RowEvHandlerName="RDLC_GeneratePermitRowChangeEventHandler" msprop:Generator_RowDeletedName="RDLC_GeneratePermitRowDeleted" msprop:Generator_UserTableName="RDLC_GeneratePermit" msprop:Generator_RowChangedName="RDLC_GeneratePermitRowChanged" msprop:Generator_RowEvArgName="RDLC_GeneratePermitRowChangeEvent" msprop:Generator_RowClassName="RDLC_GeneratePermitRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FinYear" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFinYear" msprop:Generator_ColumnPropNameInRow="FinYear" msprop:Generator_ColumnPropNameInTable="FinYearColumn" msprop:Generator_UserColumnName="FinYear" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SeasonName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSeasonName" msprop:Generator_ColumnPropNameInRow="SeasonName" msprop:Generator_ColumnPropNameInTable="SeasonNameColumn" msprop:Generator_UserColumnName="SeasonName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Farmer_Name" msprop:Generator_ColumnVarNameInTable="columnFarmer_Name" msprop:Generator_ColumnPropNameInRow="Farmer_Name" msprop:Generator_ColumnPropNameInTable="Farmer_NameColumn" msprop:Generator_UserColumnName="Farmer_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Father_Name" msprop:Generator_ColumnVarNameInTable="columnFather_Name" msprop:Generator_ColumnPropNameInRow="Father_Name" msprop:Generator_ColumnPropNameInTable="Father_NameColumn" msprop:Generator_UserColumnName="Father_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KhataNo" msprop:Generator_ColumnVarNameInTable="columnKhataNo" msprop:Generator_ColumnPropNameInRow="KhataNo" msprop:Generator_ColumnPropNameInTable="KhataNoColumn" msprop:Generator_UserColumnName="KhataNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CropName_Tel" msprop:Generator_ColumnVarNameInTable="columnCropName_Tel" msprop:Generator_ColumnPropNameInRow="CropName_Tel" msprop:Generator_ColumnPropNameInTable="CropName_TelColumn" msprop:Generator_UserColumnName="CropName_Tel" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Extent" msprop:Generator_ColumnVarNameInTable="columnExtent" msprop:Generator_ColumnPropNameInRow="Extent" msprop:Generator_ColumnPropNameInTable="ExtentColumn" msprop:Generator_UserColumnName="Extent" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DistName" msprop:Generator_ColumnVarNameInTable="columnDistName" msprop:Generator_ColumnPropNameInRow="DistName" msprop:Generator_ColumnPropNameInTable="DistNameColumn" msprop:Generator_UserColumnName="DistName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MandName" msprop:Generator_ColumnVarNameInTable="columnMandName" msprop:Generator_ColumnPropNameInRow="MandName" msprop:Generator_ColumnPropNameInTable="MandNameColumn" msprop:Generator_UserColumnName="MandName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VillName" msprop:Generator_ColumnVarNameInTable="columnVillName" msprop:Generator_ColumnPropNameInRow="VillName" msprop:Generator_ColumnPropNameInTable="VillNameColumn" msprop:Generator_UserColumnName="VillName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SeedQty_Requirement" msprop:Generator_ColumnVarNameInTable="columnSeedQty_Requirement" msprop:Generator_ColumnPropNameInRow="SeedQty_Requirement" msprop:Generator_ColumnPropNameInTable="SeedQty_RequirementColumn" msprop:Generator_UserColumnName="SeedQty_Requirement" type="xs:int" minOccurs="0" />
+              <xs:element name="SeedQty_Requested" msprop:Generator_ColumnVarNameInTable="columnSeedQty_Requested" msprop:Generator_ColumnPropNameInRow="SeedQty_Requested" msprop:Generator_ColumnPropNameInTable="SeedQty_RequestedColumn" msprop:Generator_UserColumnName="SeedQty_Requested" type="xs:int" minOccurs="0" />
+              <xs:element name="SeedQty_Issued" msprop:Generator_ColumnVarNameInTable="columnSeedQty_Issued" msprop:Generator_ColumnPropNameInRow="SeedQty_Issued" msprop:Generator_ColumnPropNameInTable="SeedQty_IssuedColumn" msprop:Generator_UserColumnName="SeedQty_Issued" type="xs:int" minOccurs="0" />
+              <xs:element name="Seed_ReqDt" msprop:Generator_ColumnVarNameInTable="columnSeed_ReqDt" msprop:Generator_ColumnPropNameInRow="Seed_ReqDt" msprop:Generator_ColumnPropNameInTable="Seed_ReqDtColumn" msprop:Generator_UserColumnName="Seed_ReqDt" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Seed_Permit_IssuedDt" msprop:Generator_ColumnVarNameInTable="columnSeed_Permit_IssuedDt" msprop:Generator_ColumnPropNameInRow="Seed_Permit_IssuedDt" msprop:Generator_ColumnPropNameInTable="Seed_Permit_IssuedDtColumn" msprop:Generator_UserColumnName="Seed_Permit_IssuedDt" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

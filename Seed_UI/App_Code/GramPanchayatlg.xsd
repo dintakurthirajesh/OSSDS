@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GramPanchayatlg" targetNamespace="http://tempuri.org/GramPanchayatlg.xsd" xmlns:mstns="http://tempuri.org/GramPanchayatlg.xsd" xmlns="http://tempuri.org/GramPanchayatlg.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GramPanchayatlg" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="GramPanchayatlg" msprop:Generator_DataSetName="GramPanchayatlg">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GramPanchayat" msprop:Generator_TableClassName="GramPanchayatDataTable" msprop:Generator_TableVarName="tableGramPanchayat" msprop:Generator_TablePropName="GramPanchayat" msprop:Generator_RowDeletingName="GramPanchayatRowDeleting" msprop:Generator_RowChangingName="GramPanchayatRowChanging" msprop:Generator_RowEvHandlerName="GramPanchayatRowChangeEventHandler" msprop:Generator_RowDeletedName="GramPanchayatRowDeleted" msprop:Generator_UserTableName="GramPanchayat" msprop:Generator_RowChangedName="GramPanchayatRowChanged" msprop:Generator_RowEvArgName="GramPanchayatRowChangeEvent" msprop:Generator_RowClassName="GramPanchayatRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DistCode_Lg" msprop:Generator_ColumnVarNameInTable="columnDistCode_Lg" msprop:Generator_ColumnPropNameInRow="DistCode_Lg" msprop:Generator_ColumnPropNameInTable="DistCode_LgColumn" msprop:Generator_UserColumnName="DistCode_Lg" type="xs:string" minOccurs="0" />
+              <xs:element name="DistCode" msprop:Generator_ColumnVarNameInTable="columnDistCode" msprop:Generator_ColumnPropNameInRow="DistCode" msprop:Generator_ColumnPropNameInTable="DistCodeColumn" msprop:Generator_UserColumnName="DistCode" type="xs:string" minOccurs="0" />
+              <xs:element name="DistName" msprop:Generator_ColumnVarNameInTable="columnDistName" msprop:Generator_ColumnPropNameInRow="DistName" msprop:Generator_ColumnPropNameInTable="DistNameColumn" msprop:Generator_UserColumnName="DistName" type="xs:string" minOccurs="0" />
+              <xs:element name="Sub_DistCode_lG" msprop:Generator_ColumnVarNameInTable="columnSub_DistCode_lG" msprop:Generator_ColumnPropNameInRow="Sub_DistCode_lG" msprop:Generator_ColumnPropNameInTable="Sub_DistCode_lGColumn" msprop:Generator_UserColumnName="Sub_DistCode_lG" type="xs:string" minOccurs="0" />
+              <xs:element name="MandCode_LG" msprop:Generator_ColumnVarNameInTable="columnMandCode_LG" msprop:Generator_ColumnPropNameInRow="MandCode_LG" msprop:Generator_ColumnPropNameInTable="MandCode_LGColumn" msprop:Generator_UserColumnName="MandCode_LG" type="xs:string" minOccurs="0" />
+              <xs:element name="MandName" msprop:Generator_ColumnVarNameInTable="columnMandName" msprop:Generator_ColumnPropNameInRow="MandName" msprop:Generator_ColumnPropNameInTable="MandNameColumn" msprop:Generator_UserColumnName="MandName" type="xs:string" minOccurs="0" />
+              <xs:element name="gp_code" msprop:Generator_ColumnVarNameInTable="columngp_code" msprop:Generator_ColumnPropNameInRow="gp_code" msprop:Generator_ColumnPropNameInTable="gp_codeColumn" msprop:Generator_UserColumnName="gp_code" type="xs:string" minOccurs="0" />
+              <xs:element name="gp_name" msprop:Generator_ColumnVarNameInTable="columngp_name" msprop:Generator_ColumnPropNameInRow="gp_name" msprop:Generator_ColumnPropNameInTable="gp_nameColumn" msprop:Generator_UserColumnName="gp_name" type="xs:string" minOccurs="0" />
+              <xs:element name="VillCode_LG" msprop:Generator_ColumnVarNameInTable="columnVillCode_LG" msprop:Generator_ColumnPropNameInRow="VillCode_LG" msprop:Generator_ColumnPropNameInTable="VillCode_LGColumn" msprop:Generator_UserColumnName="VillCode_LG" type="xs:string" minOccurs="0" />
+              <xs:element name="VillCode" msprop:Generator_ColumnVarNameInTable="columnVillCode" msprop:Generator_ColumnPropNameInRow="VillCode" msprop:Generator_ColumnPropNameInTable="VillCodeColumn" msprop:Generator_UserColumnName="VillCode" type="xs:string" minOccurs="0" />
+              <xs:element name="VillName" msprop:Generator_ColumnVarNameInTable="columnVillName" msprop:Generator_ColumnPropNameInRow="VillName" msprop:Generator_ColumnPropNameInTable="VillNameColumn" msprop:Generator_UserColumnName="VillName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

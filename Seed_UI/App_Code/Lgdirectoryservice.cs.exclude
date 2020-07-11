@@ -1,0 +1,166 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using Seed_DL;
+using System.Data;
+/// <summary>
+/// Summary description for Lgdirectoryservice
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+// [System.Web.Script.Services.ScriptService]
+public class Lgdirectoryservice : System.Web.Services.WebService
+{
+
+    public Lgdirectoryservice () {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+    public class locationdetails {
+
+        public string statecd { get; set; }
+        public string statelgcd { get; set; }
+        public string statename { get; set; }
+        public string statename_tel { get; set; }
+        public string distcd { get; set; }
+        public string distlgcd { get; set; }
+        public string distname { get; set; }
+        public string DistName_Tel { get; set; }
+        public string mandalcd { get; set; }
+        public string mandallgcd { get; set; }
+        public string MandalType { get; set; }
+
+        public string mandalname { get; set; }
+        public string mandalname_tel { get; set; }
+        public string panchayatcd { get; set; }
+        public string panchayatlgcd { get; set; }
+        public string panchayatname { get; set; }
+        public string panchayatname_tel { get; set; }
+        public string villagecd { get; set; }
+        public string villagelgcd { get; set; }
+        public string villagename { get; set; }
+        public string villagename_tel { get; set; }
+        public string ipaddress { get; set; }
+        public string userid { get; set; }
+        public string Flage { get; set; }
+        public int active { get; set; }
+        public DateTime efct_dt { get; set; }
+    }
+
+    
+    [WebMethod]
+    public List<locationdetails> GetLgDistrictmastersecurity(string statecode,string userid,string password,string saltval)
+    {
+        List<locationdetails> Districtmaster = new List<locationdetails>();      
+        DataTable dt = new DataTable();
+        LocationDAL cls = new LocationDAL();
+        dt = cls.getDistrictsByStateCodeDAL(statecode);
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i <= dt.Rows.Count - 1; i++)
+            {
+                locationdetails obj = new locationdetails();
+                obj.distcd = dt.Rows[i]["DistCode"].ToString();
+                obj.distname = dt.Rows[i]["DistName"].ToString();                
+                Districtmaster.Add(obj);
+            }
+        }
+        
+
+        return Districtmaster;
+    }
+    [WebMethod]
+    public List<locationdetails> GetLgMandalsecurity(string statecode, string distcd, string userid, string password, string saltval)
+    {
+        List<locationdetails> mandalmaster = new List<locationdetails>();
+        DataTable dt = new DataTable();
+        LocationDAL cls = new LocationDAL();
+        dt = cls.viewDistdataDAL(distcd, "R");
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i <= dt.Rows.Count - 1; i++)
+            {
+                locationdetails obj = new locationdetails();
+                obj.distlgcd = dt.Rows[i]["DistCode"].ToString();
+                obj.mandalcd = dt.Rows[i]["MandCode"].ToString();
+                obj.mandallgcd = dt.Rows[i]["MandCode_LG"].ToString();
+                obj.mandalname = dt.Rows[i]["MandName"].ToString();
+                obj.efct_dt = Convert.ToDateTime(dt.Rows[i]["EffectiveDt"].ToString());
+                if (dt.Rows[i]["Active"].ToString() == "Yes")
+                {
+                    obj.active = 1;
+                }
+                else
+                {
+                    obj.active = 0;
+                }
+                mandalmaster.Add(obj);
+            }
+        }
+
+
+        return mandalmaster;
+    }
+    [WebMethod]
+    public List<locationdetails> GetLgDistrictmaster(string statecode)
+    {
+        List<locationdetails> Districtmaster = new List<locationdetails>();
+        DataTable dt = new DataTable();
+        LocationDAL cls = new LocationDAL();
+        dt = cls.getDistrictsByStateCodeDAL(statecode);
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i <= dt.Rows.Count - 1; i++)
+            {
+                locationdetails obj = new locationdetails();
+                obj.distcd = dt.Rows[i]["DistCode"].ToString();
+                obj.distname = dt.Rows[i]["DistName"].ToString();
+                Districtmaster.Add(obj);
+            }
+        }
+
+
+        return Districtmaster;
+    }
+    [WebMethod]
+    public List<locationdetails> GetLgMandal(string statecode,string distcd)
+    {
+        List<locationdetails> mandalmaster = new List<locationdetails>();
+        DataTable dt = new DataTable();
+        LocationDAL cls = new LocationDAL();
+        dt = cls.viewDistdataDAL(distcd,"R");
+        if (dt.Rows.Count > 0)
+        {
+            for (int i = 0; i <= dt.Rows.Count - 1; i++)
+            {
+                locationdetails obj = new locationdetails();
+                obj.distlgcd = dt.Rows[i]["DistCode"].ToString();
+                obj.mandalcd = dt.Rows[i]["MandCode"].ToString();
+                obj.mandallgcd = dt.Rows[i]["MandCode_LG"].ToString();
+                obj.mandalname = dt.Rows[i]["MandName"].ToString();
+                obj.efct_dt =Convert.ToDateTime(dt.Rows[i]["EffectiveDt"].ToString());
+                if (dt.Rows[i]["Active"].ToString() == "Yes")
+                {
+                    obj.active = 1;
+                }
+                else
+                {
+                    obj.active = 0;
+                }
+                mandalmaster.Add(obj);
+            }
+        }
+
+
+        return mandalmaster;
+    }
+
+    private void InitializeComponent()
+    {
+
+    }
+}

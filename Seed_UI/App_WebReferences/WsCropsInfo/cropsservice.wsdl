@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetCropsInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sur_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usr_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCropsInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCropsInformationResult" type="tns:ArrayOfCrops" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCrops">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Crops" type="tns:Crops" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Crops">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pSerialNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSurvey_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTotal_Extent" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pUncultivated_Land" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pCultivatable_Land" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Nature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTax" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Classification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pWater_Resource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pAyakat_Extent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pKhata_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Extent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pEnjoyment_Nature" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pVillage_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pVillage_Code" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pDelete_Flag" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pMutated_Date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="pBase_Survey_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSignature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pSignatureChecked" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="pTARHACODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pTotalextent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pCR_TR_I_EXT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_season" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pMonthName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pCRPNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_sow_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pwater_source_desc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_1st_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_2nd_3rd_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_yield" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_vao_ri_rem" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_mro_rem" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="premarks" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="psingle_joint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Extent_Units" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pPassbook_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="fasali_year" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pahani_year" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCropsInformation_cgg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Year" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sur_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usr_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCropsInformation_cggResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCropsInformation_cggResult" type="tns:ArrayOfCrops_cgg" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCrops_cgg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Crops_cgg" type="tns:Crops_cgg" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Crops_cgg">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pSerialNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSurvey_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTotal_Extent" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pUncultivated_Land" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pCultivatable_Land" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Nature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTax" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Classification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pWater_Resource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pAyakat_Extent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pKhata_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Extent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pEnjoyment_Nature" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pVillage_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pVillage_Code" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pDelete_Flag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pBase_Survey_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSignature" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pTARHACODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pTotalextent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pCR_TR_I_EXT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_season" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pMonthName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pCRPNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_sow_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pwater_source_desc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_1st_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_2nd_3rd_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_yield" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_vao_ri_rem" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pcr_mro_rem" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="premarks" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="psingle_joint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Extent_Units" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pPassbook_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="fasali_year" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pahani_year" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfCrops" nillable="true" type="tns:ArrayOfCrops" />
+      <s:element name="ArrayOfCrops_cgg" nillable="true" type="tns:ArrayOfCrops_cgg" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCropsInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCropsInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCropsInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformation_cggSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCropsInformation_cgg" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformation_cggSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCropsInformation_cggResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformationHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="usr_id" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCrops" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformation_cggHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="usr_id" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformation_cggHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCrops_cgg" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformationHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="usr_id" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCrops" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformation_cggHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="Year" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="usr_id" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCropsInformation_cggHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCrops_cgg" />
+  </wsdl:message>
+  <wsdl:portType name="CropsServiceSoap">
+    <wsdl:operation name="GetCropsInformation">
+      <wsdl:input message="tns:GetCropsInformationSoapIn" />
+      <wsdl:output message="tns:GetCropsInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani 1-31 as an XML array.</wsdl:documentation>
+      <wsdl:input message="tns:GetCropsInformation_cggSoapIn" />
+      <wsdl:output message="tns:GetCropsInformation_cggSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CropsServiceHttpGet">
+    <wsdl:operation name="GetCropsInformation">
+      <wsdl:input message="tns:GetCropsInformationHttpGetIn" />
+      <wsdl:output message="tns:GetCropsInformationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani 1-31 as an XML array.</wsdl:documentation>
+      <wsdl:input message="tns:GetCropsInformation_cggHttpGetIn" />
+      <wsdl:output message="tns:GetCropsInformation_cggHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CropsServiceHttpPost">
+    <wsdl:operation name="GetCropsInformation">
+      <wsdl:input message="tns:GetCropsInformationHttpPostIn" />
+      <wsdl:output message="tns:GetCropsInformationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani 1-31 as an XML array.</wsdl:documentation>
+      <wsdl:input message="tns:GetCropsInformation_cggHttpPostIn" />
+      <wsdl:output message="tns:GetCropsInformation_cggHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CropsServiceSoap" type="tns:CropsServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCropsInformation">
+      <soap:operation soapAction="http://tempuri.org/GetCropsInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <soap:operation soapAction="http://tempuri.org/GetCropsInformation_cgg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CropsServiceSoap12" type="tns:CropsServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCropsInformation">
+      <soap12:operation soapAction="http://tempuri.org/GetCropsInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <soap12:operation soapAction="http://tempuri.org/GetCropsInformation_cgg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CropsServiceHttpGet" type="tns:CropsServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetCropsInformation">
+      <http:operation location="/GetCropsInformation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <http:operation location="/GetCropsInformation_cgg" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CropsServiceHttpPost" type="tns:CropsServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetCropsInformation">
+      <http:operation location="/GetCropsInformation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCropsInformation_cgg">
+      <http:operation location="/GetCropsInformation_cgg" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CropsService">
+    <wsdl:port name="CropsServiceSoap" binding="tns:CropsServiceSoap">
+      <soap:address location="http://webland.telangana.gov.in/uatwebland/cropsservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CropsServiceSoap12" binding="tns:CropsServiceSoap12">
+      <soap12:address location="http://webland.telangana.gov.in/uatwebland/cropsservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CropsServiceHttpGet" binding="tns:CropsServiceHttpGet">
+      <http:address location="http://webland.telangana.gov.in/uatwebland/cropsservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CropsServiceHttpPost" binding="tns:CropsServiceHttpPost">
+      <http:address location="http://webland.telangana.gov.in/uatwebland/cropsservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

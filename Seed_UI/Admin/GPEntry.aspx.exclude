@@ -1,0 +1,170 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="GPEntry.aspx.cs" Inherits="GPEntry" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Mandal-GP Mapping</title>
+    <link href="Styles/style.css" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+        .style63
+        {
+            width: 80%;
+            background-color: White;
+            font-size: large;
+        }
+        .style1
+        {
+            text-decoration: underline;
+            height: 60px;
+        }
+        .style64
+        {
+            height: 52px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        function Confirm(link) {
+            if (confirm("Are you sure to delete the row?")) {
+                return true;
+            }
+            else
+                return false;
+        }      
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div align="center" style="border-style: dotted">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <table class="style63">
+            <tr>
+                <td colspan="4" align="center">
+                    <img alt="" src="../Images/lg_dire.jpg" />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" style="background-color: #55A8BD;">
+                    <asp:ImageButton ID="Imghome" ImageUrl="~/Images/home4.png" runat="server" />
+                </td>
+                <td align="right" colspan="3" style="background-color: #55A8BD; height: 30px;">
+                    <a href="Logout.aspx" style="color: White;">Logout</a>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="4" class="style64">
+                    <h1 class="style1">
+                        <strong>Mandal-Gram Panchayat Mapping</strong></h1>
+                </th>
+            </tr>
+            <tr>
+                <td align="left">
+                    Select District<span class="red">*</span>
+                </td>
+                <td align="left">
+                    <asp:DropDownList ID="ddldist" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddldist_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+                <td align="left">
+                    Select Mandal <span class="red">*</span>
+                </td>
+                <td align="left">
+                    <asp:DropDownList ID="ddlmand" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlmand_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    Gram Panchayat Code <span class="red">*</span>
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtgpcode" runat="server" MaxLength="6" BorderWidth="1px" Height="20px"
+                        Width="150px"></asp:TextBox>
+                    <ajaxToolkit:FilteredTextBoxExtender ID="txtgpcode_FilteredTextBoxExtender" FilterType="Numbers"
+                        runat="server" BehaviorID="txtgpcode_FilteredTextBoxExtender" TargetControlID="txtgpcode">
+                    </ajaxToolkit:FilteredTextBoxExtender>
+                </td>
+                <td align="left">
+                    Gram Panchayat Name <span class="red">*</span>
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtgpnm" runat="server" BorderWidth="1px" Height="20px" Width="150px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:Button ID="Btn_Save" runat="server" Text="Save" OnClick="Button1_Click" />
+                    <asp:Button ID="Btn_Update" runat="server" Text="Update" OnClick="Update_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:Label ID="lblmsg" runat="server" class="red"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    Sort By
+                </td>
+                <td colspan="2" align="left">
+                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged"
+                        RepeatDirection="Horizontal">
+                        <asp:ListItem Value="Code">GPCode</asp:ListItem>
+                        <asp:ListItem Value="Name">GP Name</asp:ListItem>
+                    </asp:RadioButtonList>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" CssClass="Grid"
+                        AllowSorting="true" GridLines="None" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
+                        <AlternatingRowStyle BackColor="White" Width="100%" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="SlNo">
+                                <ItemTemplate>
+                                    <%#Container.DataItemIndex+1 %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="District">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDistCode" runat="server" Visible="false" Text='<%# Eval("dist_code") %>'></asp:Label>
+                                    <asp:Label ID="lblDistNm" runat="server" Text='<%# Eval("DistName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Mandal">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblMandCode" runat="server" Visible="false" Text='<%# Eval("mand_code") %>'></asp:Label>
+                                    <asp:Label ID="lblMandNm" runat="server" Text='<%# Eval("MandName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="gp_code" HeaderText="GP Code" />
+                            <asp:BoundField DataField="gp_name" HeaderText="GP Name" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edt" Text="Edit"></asp:LinkButton>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <asp:LinkButton ID="btnDelete" runat="server" CommandName="Dlt" OnClientClick="return Confirm(this)"
+                                        Text="Delete"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

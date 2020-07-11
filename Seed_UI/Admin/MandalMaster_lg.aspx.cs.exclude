@@ -1,0 +1,417 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Seed_DL;
+using System.Data;
+using System.Web.Security;
+using Seed_BE;
+public partial class MandalMaster : System.Web.UI.Page
+{
+    MasterDAL objDist = new MasterDAL();
+    CommonFuncs objCommon = new CommonFuncs();
+    Validate objValidate = new Validate();
+    LocationBE objinsert = new LocationBE();
+    DataTable ddt;
+    ListItem li;
+    string StateCode = "", Flag_IUP, UserName = "";
+    string INSERT, UPDATE, DELETE;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            if ((Request.ServerVariables["HTTP_REFERER"] == null) || (Request.ServerVariables["HTTP_REFERER"] == ""))
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            else
+            {
+                string http_ref = Request.ServerVariables["HTTP_REFERER"].Trim();
+                string http_hos = Request.ServerVariables["HTTP_HOST"].Trim();
+                int len = http_hos.Length;
+                if (http_ref.IndexOf(http_hos, 0) < 0)
+                {
+                    Response.Redirect("~/Error.aspx");
+                }
+            }
+          //  if (Session["Role"].ToString() == null || Session["Role"].ToString() != "1")
+            if (Session["Role"].ToString() == null || Session["Role"].ToString() != "Commissionerate, Seeds")
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            lblUsrName.Text = Session["UsrName"].ToString();
+            lblDate.Text = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            if (!IsPostBack)
+            {
+                this.txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                StateCode = Session["StateCode"].ToString();
+                UserName = Session["UsrName"].ToString();
+                ddt = objDist.viewdataDAL(Session["StateCode"].ToString());
+                objCommon.BindDropDownLists(ddl_dist_code, ddt, "DistName", "DistCode", "0");
+                btn_Update.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+    }
+
+    
+
+    protected void GvMandal_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            if (e.CommandName == "Dlt")
+            {
+                DataTable dt = new DataTable();
+                StateCode = Session["StateCode"].ToString();
+                UserName = Session["UsrName"].ToString();
+
+                GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                HiddenField hdndistcode = (HiddenField)gvrow.FindControl("hdndistcode");
+                Label lblMCode = (Label)gvrow.FindControl("lblMCode");
+                Label lblMName = (Label)gvrow.FindControl("lblMName");
+                Label lblMLGCode = (Label)gvrow.FindControl("lblMLGCode");             
+                objinsert.distcd = hdndistcode.Value;
+                objinsert.mandalcd = lblMCode.Text;
+                objinsert.mandallgcd = lblMLGCode.Text.Trim();
+                objinsert.mandalname = lblMName.Text;              
+                objinsert.userid = UserName;               
+                objinsert.Flage = "D";
+                objinsert.MandalType = "";
+
+                dt = objDist.insertMandaltDAL(objinsert);
+            //    dt = objDist.DeletemandalBAL(hdndistcode.Value, lblMCode.Text, lblMName.Text, "");
+                if (dt.Rows.Count > 0)
+                {
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    txtMandalCode.Text = "";
+                    txtMandalName.Text = "";
+                    //txtMandalLGCode.Text = "";
+                    Viewdata();
+                }
+
+            }
+            else if (e.CommandName == "Edt")
+            {
+                GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                HiddenField hdndistcode = (HiddenField)gvrow.FindControl("hdndistcode");
+                ddl_dist_code.SelectedValue =((HiddenField)(gvrow.FindControl("hdndistcode"))).Value;
+                txtMandalCode.Text = ((Label)(gvrow.FindControl("lblMCode"))).Text;
+                txtMandallgCode.Text = ((Label)(gvrow.FindControl("lblMLGCode"))).Text;
+                txtMandalName.Text = ((Label)(gvrow.FindControl("lblMName"))).Text;
+
+                string status = ((Label)(gvrow.FindControl("lblstatus"))).Text;
+                txt_Date.Text = ((Label)(gvrow.FindControl("lbleffdate"))).Text;
+                if (status == "Yes")
+                {
+                    rbnSy.Checked = true;
+                    rbnSn.Checked = false;
+                }
+                if (status == "No")
+                {
+                    rbnSn.Checked = true;
+                    rbnSy.Checked = false;
+                }
+                txt_Date.Enabled = true;
+                btn_Update.Visible = true;
+                btn_Save.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+    }
+
+    protected bool Validate()
+    {
+
+
+        if (ddl_dist_code.SelectedValue == "0")
+        {
+            objCommon.ShowAlertMessage("Select District");
+            ddl_dist_code.Focus();
+            return false;
+        }
+        if (txtMandalCode.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter Mandal Code");
+            txtMandalCode.Focus();
+            return false;
+        }
+        if (txtMandalName.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter Mandal Name");
+            txtMandalName.Focus();
+            return false;
+        }
+      
+
+        return true;
+    }
+
+    IFormatProvider provider = new System.Globalization.CultureInfo("fr-FR", true);
+    protected void btn_Save_Click(object sender, EventArgs e)
+    {
+        try
+        {
+
+            if (Validate())
+            {
+                string StateCode = Session["StateCode"].ToString();
+                INSERT = "I";
+                string UserName = Session["UsrName"].ToString();
+                int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+                DataTable dt = new DataTable();
+
+
+                DateTime date = DateTime.Parse(txt_Date.Text.Trim(), provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+
+
+                objinsert.statecd = StateCode;
+                //objinsert.distlgcd = txtDistCode.Text;
+                objinsert.distcd = ddl_dist_code.SelectedValue.ToString();
+                objinsert.mandalcd = txtMandalCode.Text.Trim();
+                objinsert.mandallgcd = txtMandallgCode.Text.Trim();
+                objinsert.mandalname = txtMandalName.Text.Trim();
+                objinsert.efct_dt = date;
+                objinsert.userid = UserName;
+                objinsert.active = ActiveSt;
+                objinsert.Flage = INSERT;
+                objinsert.MandalType = "";
+                // date = DateTime.Now.ToString("yyyy/MM/dd");
+                dt = objDist.insertMandaltDAL(objinsert);
+
+
+
+               // dt = objDist.InsertMandalBAL(ddl_dist_code.SelectedValue.ToString(), txtMandalCode.Text.Trim(), txtMandalName.Text.Trim(), "","", date, ActiveSt, UserName, INSERT);
+               
+                
+                if (dt.Rows.Count > 0)
+                {
+                    if (dt.Columns[0].ColumnName == "succ")
+                    {
+                        objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                        txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                        rbnSy.Checked = true;
+                        txtMandalCode.Text = "";
+                        txtMandalName.Text = "";
+                        txtMandallgCode.Text = "";
+                        //txtMandalLGCode.Text = "";
+                        //txtMandalLGCode.Enabled = true;
+                        rbnSn.Checked = false;
+                    }
+                    else
+                    {
+                        objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    }
+                    
+                }
+                Viewdata();
+
+
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+
+
+    }
+    protected void ddl_dist_code_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddl_dist_code.SelectedIndex > 0)
+        {
+            Viewdata();
+        }
+        else
+        {
+            GvMandal.Visible = false;
+
+        }
+        txtMandalCode.Text = "";
+        txtMandalName.Text = "";
+        //txtMandalLGCode.Text = "";
+        txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        rbnSy.Checked = true;
+        txt_Date.Enabled = true;
+        txtMandalCode.Enabled = true;
+        //txtMandalLGCode.Enabled = true;
+        rbnSn.Checked = false;
+        btn_Save.Visible = true;
+        btn_Update.Visible = false;
+
+    }
+    public void Viewdata()
+    {
+        try
+        {
+            DataTable dt1 = new DataTable();
+            Flag_IUP = "R";
+            dt1 = objDist.viewDistdataDAL(ddl_dist_code.SelectedValue.ToString(), Flag_IUP);
+            if (dt1.Rows.Count > 0)
+            {
+                GvMandal.Visible = true;
+                GvMandal.DataSource = dt1;
+                GvMandal.DataBind();
+            }
+            else
+            {
+                objCommon.ShowAlertMessage("No data found");
+                GvMandal.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+    }
+
+    protected void lnkEdit_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            LinkButton btnsubmit = sender as LinkButton;
+            GridViewRow gRow = (GridViewRow)btnsubmit.NamingContainer;
+            string status = ((Label)(gRow.FindControl("lblstatus"))).Text;
+            txtMandalCode.Text = ((Label)(gRow.FindControl("lblMCode"))).Text;
+            txtMandalName.Text = ((Label)(gRow.FindControl("lblMName"))).Text;
+            //txtMandalLGCode.Text = ((Label)(gRow.FindControl("lblMLGCode"))).Text;
+            txt_Date.Text = ((Label)(gRow.FindControl("lbleffdate"))).Text;
+
+            if (status == "Yes")
+            {
+                rbnSy.Checked = true;
+                rbnSn.Checked = false;
+            }
+            //if (status == "No")
+            else
+            {
+                rbnSn.Checked = true;
+                rbnSy.Checked = false;
+            }
+            lblMcode.Visible = false;
+            
+            txt_Date.Enabled = false;
+            btn_Update.Visible = true;
+            btn_Save.Visible = false;
+            txtMandalCode.Enabled = false;
+            //txtMandalLGCode.Enabled = true;
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+
+        }
+
+    }
+
+
+    protected void btn_Update_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (Validate())
+            {
+                //string StateCode = Session["StateCode"].ToString();
+                //UPDATE = "U";
+                //string UserName = Session["UsrName"].ToString();
+                //int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+                //DataTable dt = new DataTable();
+                string StateCode = Session["StateCode"].ToString();
+                INSERT = "U";
+                string UserName = Session["UsrName"].ToString();
+                int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+                DataTable dt = new DataTable();
+
+
+                DateTime date = DateTime.Parse(txt_Date.Text.Trim(), provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+
+
+                objinsert.statecd = StateCode;
+                //objinsert.distlgcd = txtDistCode.Text;
+                objinsert.distcd = ddl_dist_code.SelectedValue.ToString();
+                objinsert.mandalcd = txtMandalCode.Text.Trim();
+                objinsert.mandallgcd = txtMandallgCode.Text.Trim();
+                objinsert.mandalname = txtMandalName.Text.Trim();
+                objinsert.efct_dt = date;
+                objinsert.userid = UserName;
+                objinsert.active = ActiveSt;
+                objinsert.Flage = INSERT;
+                objinsert.MandalType = "";
+                // date = DateTime.Now.ToString("yyyy/MM/dd");
+                dt = objDist.insertMandaltDAL(objinsert);
+              //  dt = objDist.UpdateMandalBAL(ddl_dist_code.SelectedValue.ToString(), txtMandalCode.Text, txtMandalName.Text.Trim(), "", "", ActiveSt, UserName, UPDATE);
+                if (dt.Rows.Count > 0)
+                {
+                    if (dt.Columns[0].ColumnName == "succ")
+                    {
+                        objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                        txtMandalName.Text = "";
+                        //txtMandalLGCode.Text = "";
+                        txtMandalCode.Enabled = true;                      
+                        btn_Save.Visible = true;
+                        btn_Update.Visible = false;
+                        txtMandalCode.Text = "";
+                        txtMandallgCode.Text = "";
+                        txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                        rbnSy.Checked = true;
+                        txt_Date.Enabled = true;
+                        rbnSn.Checked = false;
+                    }
+                    else
+                    {
+                        objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    }
+                   
+                }
+                else
+                {
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                }
+                Viewdata();
+
+
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+    protected void txtMandalCode_TextChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (txtMandalCode.Text.Length < 2)
+            {
+                txtMandalCode.Text = "0" + txtMandalCode.Text;
+            }
+            else
+            {
+                txtMandalCode.Text = txtMandalCode.Text;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+}

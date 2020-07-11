@@ -1,0 +1,244 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Seed_BL;
+using System.Data;
+using System.Web.Security;
+
+
+public partial class StateMaster : System.Web.UI.Page
+{
+
+    LocationBAL objDist = new LocationBAL();
+    CommonFuncs objCommon = new CommonFuncs();
+    DataTable ddt;
+    ListItem li;
+    string StateCode = "", Flag_IUP, UserName = "";
+    string INSERT, UPDATE, DELETE;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if ((Request.ServerVariables["HTTP_REFERER"] == null) || (Request.ServerVariables["HTTP_REFERER"] == ""))
+        {
+            Response.Redirect("~/Error.aspx");
+        }
+        else
+        {
+            string http_ref = Request.ServerVariables["HTTP_REFERER"].Trim();
+            string http_hos = Request.ServerVariables["HTTP_HOST"].Trim();
+            int len = http_hos.Length;
+            if (http_ref.IndexOf(http_hos, 0) < 0)
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+        }
+        if (Session["Role"] == null || Session["Role"].ToString() != "1")
+        {
+            Response.Redirect("~/Error.aspx");
+        }
+        lblUsrName.Text = Session["UsrName"].ToString();
+        lblDate.Text = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+        if (!IsPostBack)
+        {
+          
+            Viewdata();
+            btn_Update.Visible = false;
+        }
+
+       
+    }
+
+
+    protected void GvSate_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GvSate.PageIndex = e.NewPageIndex;
+        Viewdata();
+    }
+    protected void GvSate_RowCancelling(object sender, GridViewCancelEditEventArgs e)
+    {
+        GvSate.EditIndex = -1;
+
+
+    }
+    protected void GvSate_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "Dlt")
+        {
+
+            DataTable dt = new DataTable();
+            StateCode = Session["StateCode"].ToString();
+            UserName = Session["UsrName"].ToString();
+            GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+            DELETE = "D";
+            Label lblSCode = (Label)gvrow.FindControl("lblSCode");
+            Label lblSName = (Label)gvrow.FindControl("lblSName");
+            dt = objDist.DeleteStateBAL(lblSCode.Text, lblSName.Text, DELETE);
+            if (dt.Rows.Count > 0)
+            {
+                // if (dt.Rows[0][0].ToString() == "3")
+                //{
+                //string aa = "Deleted Successfully";
+                objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                txtstateCode.Text = "";
+                txtstateName.Text = "";
+                Viewdata();
+
+                // }
+
+            }
+            else
+            {
+
+                objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                txtstateCode.Text = "";
+                txtstateName.Text = "";
+
+
+            }
+        }
+
+        if (e.CommandName == "Edt")
+        {
+
+           
+            GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+            DELETE = "D";
+            txtstateCode.Text = ((Label)(gvrow.FindControl("lblSCode"))).Text;
+            txtstateName.Text = ((Label)(gvrow.FindControl("lblSName"))).Text;
+
+            txtstateCode.Enabled = false;
+            btn_Update.Visible = true;
+            btn_Save.Visible = false;
+
+           
+        }
+        Viewdata();
+    }
+
+    protected void GvSate_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GvSate.EditIndex = e.NewEditIndex;
+
+    }
+
+
+    protected void btn_Save_Click(object sender, EventArgs e)
+    {
+        if (txtstateCode.Text != "" && txtstateName.Text != "")
+        {
+            string StateCode = Session["StateCode"].ToString();
+            INSERT = "I";
+            string UserName = Session["UsrName"].ToString();
+
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = objDist.InsertStateBAL(txtstateCode.Text, txtstateName.Text.Trim(), INSERT);
+                if (dt.Rows.Count > 0)
+                {
+
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    txtstateCode.Text = "";
+                    txtstateName.Text = "";
+
+
+                }
+                Viewdata();
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            finally
+            {
+
+            }
+
+        }
+        else
+        {
+            string message = "Please Enter Details";
+            objCommon.ShowAlertMessage(message);
+
+        }
+    }
+
+    public void Viewdata()
+    {
+        DataTable dt1 = new DataTable();
+        dt1 = objDist.viewStatedataBAL();
+        GvSate.DataSource = dt1;
+        GvSate.DataBind();
+    }
+    //protected void lnkEdit_Click(object sender, EventArgs e)
+    //{
+
+    //    LinkButton btnsubmit = sender as LinkButton;
+    //    GridViewRow gRow = (GridViewRow)btnsubmit.NamingContainer;
+    //    txtstateCode.Text = ((Label)(gRow.FindControl("lblSCode"))).Text;
+    //    txtstateName.Text = ((Label)(gRow.FindControl("lblSName"))).Text;
+
+    //    txtstateCode.Enabled = false; 
+    //    btn_Update.Visible = true;
+    //    btn_Save.Visible = false;
+      
+    //}
+    protected void btn_Update_Click(object sender, EventArgs e)
+    {
+        string StateCode = Session["StateCode"].ToString();
+        UPDATE = "U";
+        string UserName = Session["UsrName"].ToString();
+
+        DataTable dt = new DataTable();
+        try
+        {
+            dt = objDist.UpdateStateBAL(txtstateCode.Text, txtstateName.Text.Trim(), UPDATE);
+            if (dt.Rows.Count > 0)
+            {
+                //  if (dt.Rows[0][0].ToString() == "2")
+                //{
+                // string message = "Updated Successfully";
+                objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                txtstateCode.Text = "";
+                txtstateName.Text = "";
+                btn_Update.Visible = false;
+                btn_Save.Visible = true;
+                txtstateCode.Enabled = true;
+                // Viewdata();
+                // }
+
+            }
+            else
+            {
+
+                objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+
+            }
+            Viewdata();
+        }
+        catch (Exception ex)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
+        finally
+        {
+
+        }
+
+
+    }
+    
+    protected void txtstateCode_TextChanged(object sender, EventArgs e)
+    {
+        if (txtstateCode.Text.Length < 2)
+        {
+            txtstateCode.Text = "0" + txtstateCode.Text;
+        }
+        else
+        {
+            txtstateCode.Text = txtstateCode.Text;
+        }
+    }
+}

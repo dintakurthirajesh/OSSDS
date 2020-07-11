@@ -1,0 +1,224 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using PB_DL;
+using System.Configuration;
+
+public partial class GPEntry : System.Web.UI.Page
+{
+    gpEntry entry = new gpEntry();
+    CommonFuncs cf = new CommonFuncs();
+    DataTable dt;
+    string ConnKey = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+
+            if ((Request.ServerVariables["HTTP_REFERER"] == null) || (Request.ServerVariables["HTTP_REFERER"] == ""))
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            else
+            {
+                string http_ref = Request.ServerVariables["HTTP_REFERER"].Trim();
+                string http_hos = Request.ServerVariables["HTTP_HOST"].Trim();
+                int len = http_hos.Length;
+                if (http_ref.IndexOf(http_hos, 0) < 0)
+                {
+                    Response.Redirect("~/Error.aspx");
+                }
+            }
+            if (Session["Role"].ToString() == null || Session["Role"].ToString() != "1")
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            if (!IsPostBack)
+            {
+                Imghome.PostBackUrl = "~/Admin/StateMaster.aspx";
+                loadDistricts();
+                Btn_Update.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+    protected void loadDistricts()
+    {
+        dt = entry.GetDitricts(ConnKey);
+        cf.BindDropDownLists(ddldist, dt, "DistName", "DistCode", "select district");
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (ddldist.SelectedIndex == 0)
+            cf.ShowAlertMessage("select district");
+        if (ddlmand.SelectedIndex == 0)
+            cf.ShowAlertMessage("select mandal");
+        if (txtgpcode.Text == "")
+            cf.ShowAlertMessage("Enter GP Code");
+        if (txtgpnm.Text == "")
+            cf.ShowAlertMessage("Enter GP Name");
+        else
+        {
+            dt = new DataTable();
+            dt = entry.InsertGP(ddldist.SelectedValue, ddlmand.SelectedValue, txtgpcode.Text.Trim(), txtgpnm.Text.Trim(), ConnKey);
+            if (dt.Rows.Count > 0)
+                cf.ShowAlertMessage(dt.Rows[0][0].ToString());
+            else
+            {
+                txtgpcode.Text = "";
+                txtgpnm.Text = "";
+                lblmsg.Text = "Saved";
+                BindGrid();
+            }
+        }
+    }
+    protected void ddlmand_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        BindGrid();
+    }
+    public void BindGrid()
+    {
+        DataTable dtt = new DataTable();
+        dtt.Clear();
+        dtt.Columns.Clear();
+        if (ddlmand.SelectedIndex == 0)
+            dtt = entry.GetGPDistrct(ddldist.SelectedValue, ConnKey);
+        else
+            dtt = entry.GetGP(ddldist.SelectedValue, ddlmand.SelectedValue, ConnKey);
+        if (dtt.Rows.Count > 0)
+        {
+            GridView1.DataSource = dtt;
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+        }
+        else
+        {
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+        }
+    }
+
+    protected void GridView1_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "Edt")
+        {
+            GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+            ddldist.SelectedValue = ((Label)gvrow.FindControl("lblDistCode")).Text.Trim();
+            ddlmand.SelectedValue = ((Label)gvrow.FindControl("lblMandCode")).Text.Trim();
+            txtgpcode.Text = gvrow.Cells[3].Text;
+            txtgpcode.Enabled = false;
+            ddldist.Enabled = false;
+            ddlmand.Enabled = false;
+            txtgpnm.Text = gvrow.Cells[4].Text;
+            Btn_Save.Visible = false;
+            Btn_Update.Visible = true;
+        }
+        if (e.CommandName == "Dlt")
+        {
+            GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+            dt = new DataTable();
+            dt = entry.DeleteGP(gvrow.Cells[3].Text, ConnKey);
+            if (dt.Rows.Count > 0)
+            {
+                BindGrid();
+                cf.ShowAlertMessage(dt.Rows[0][0].ToString());
+            }
+            else
+            {
+                cf.ShowAlertMessage("Failed to Delete");
+            }
+        }
+    }
+    protected void Update_Click(object sender, EventArgs e)
+    {
+        dt = new DataTable();
+        dt = entry.UpdateGP(ddldist.SelectedValue, ddlmand.SelectedValue, txtgpcode.Text.Trim(), txtgpnm.Text.Trim(), ConnKey);
+        if (dt.Rows.Count > 0)
+            cf.ShowAlertMessage(dt.Rows[0][0].ToString());
+        else
+        {
+            BindGrid();
+            lblmsg.Text = "Updated";
+            txtgpcode.Text = "";
+            txtgpnm.Text = "";
+            txtgpcode.Enabled = true;
+            ddldist.Enabled = true;
+            ddlmand.Enabled = true;
+            Btn_Save.Visible = true;
+            Btn_Update.Visible = true;
+        }
+    }
+    protected void ddldist_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        dt = new DataTable();
+        dt = entry.GetMandals(ddldist.SelectedValue, ConnKey);
+        cf.BindDropDownLists(ddlmand, dt, "MandName", "MandCode", "select Mandal");
+        BindGrid();
+    }
+    protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string action = "";
+
+        if (ddldist.SelectedIndex == 0)
+            cf.ShowAlertMessage("Select Distrct");
+        if (ddlmand.SelectedIndex == 0)
+        {
+            if (RadioButtonList1.SelectedValue == "Code")
+                action = "VC";
+            else
+                action = "VN";
+            DataTable dtt = new DataTable();
+            dtt.Clear();
+            dtt.Columns.Clear();
+
+            dtt = entry.GetGPDistrctSortBy(ddldist.SelectedValue, action, ConnKey);
+
+            if (dtt.Rows.Count > 0)
+            {
+                GridView1.DataSource = dtt;
+                GridView1.EditIndex = -1;
+                GridView1.DataBind();
+            }
+            else
+            {
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+            }
+        }
+        else
+        {
+            if (RadioButtonList1.SelectedValue == "Code")
+                action = "RC";
+            else
+                action = "RN";
+            DataTable dtt = new DataTable();
+            dtt.Clear();
+            dtt.Columns.Clear();
+
+            dtt = entry.GetGPSortBy(ddldist.SelectedValue, ddlmand.SelectedValue, action, ConnKey);
+
+            if (dtt.Rows.Count > 0)
+            {
+                GridView1.DataSource = dtt;
+                GridView1.EditIndex = -1;
+                GridView1.DataBind();
+            }
+            else
+            {
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+            }
+        }
+    }
+
+
+}

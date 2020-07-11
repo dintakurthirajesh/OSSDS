@@ -1,0 +1,237 @@
+﻿@font-face {
+    src: url('../fonts/Product Sans Regular.ttf');
+    font-family: productsans;
+}
+
+.scroll {
+    width: 100%;
+    height: auto;
+    background-color: rgba(0,0,0,0.5);
+    padding: 4px;
+}
+
+.marquee {
+    color: #fff;
+    font-family: 'Segoe UI';
+    font-size: 16px;
+}
+
+.site_header {
+    background-color: #8bc34a;
+    background-image: url(../images/header_bg.jpg);
+    background-size: cover;
+    padding: 0 !important;
+    border-bottom: 2px solid #8bc34a;
+    box-shadow: 0 1px 5px #666;
+    margin-bottom: 20px;
+}
+
+.ap_logo img {
+    width: 130px;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.titles {
+    text-align: center;
+}
+
+    .titles h1 {
+        color: #0172bd;
+        text-shadow: 2px 2px 2px #fff;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 10px;
+        margin-bottom: 6px;
+        font-family: sans-serif;
+        /*text-transform:uppercase*/
+    }
+
+    .titles h2 {
+        color: #0172bd;
+        text-shadow: 2px 2px 2px #fff;
+        /*font-weight: bold;*/
+        display: inline-block;
+        margin: 0;
+        font-family: serif;
+        font-size: 35px;
+    }
+
+    .titles h3 {
+        color: #fff;
+        text-shadow: 0px 2px 2px #000;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 5px;
+    }
+/***********************************************************END OF HEADER**************************************************************************/
+#navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    overflow: auto;
+}
+
+#d-navbar {
+    background-color: #009688;
+    text-align: center;
+    box-shadow: 0 1px 5px #3c3a3a;
+}
+
+#d-navbar2 {
+    background-color: #009688;
+    text-align: center;
+    box-shadow: 0 1px 5px #3c3a3a;
+}
+
+#navbar li a {
+    float: left;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+    #navbar li a:hover {
+        background-color: #097d73;
+    }
+/***************************************************** END OF LOGIN FORM*** APPLICATION LOGIN PAGE********************************************************************************/
+#footer {
+    background-color: #808080;
+    margin-top: 30px;
+}
+
+.bottom-strip {
+    color: #ccc;
+    background-color: #444040;
+    text-align: center;
+    padding-top: 5px;
+}
+
+#f-li {
+    list-style: none;
+    /*width:200px;*/
+    font-size: 12px;
+    padding-top: 10px;
+}
+
+    #f-li li {
+        padding: 5px;
+        border-bottom: 1px solid #aaa;
+        color: #e9e1e1;
+        float: left;
+    }
+
+        #f-li li:hover {
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 1px solid #fff;
+        }
+
+.nic {
+    color: #126ab5;
+    font-weight: bold;
+    background-color: #fff;
+    padding: 0 3px 0 3px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+    .nic:hover {
+        color: #fff;
+        background-color: #126ab5;
+    }
+
+
+#card {
+    box-shadow: 0 1px 5px #888;
+    margin-top: 30px;
+    overflow: hidden;
+    padding: 0;
+    transition: height ease 500ms !important;
+}
+#card:hover{
+    box-shadow: 0 3px 10px #777;
+    transition:all 100ms ease;
+}
+
+    #card .card-header {
+        background-color: #009688;
+        text-align: center;
+    }
+
+    #card .card-title {
+        font-size: 20px;
+        color: #fff;
+        line-height: 2;
+    }
+
+.crc {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: orange;
+    margin: 10px auto;
+    color: #fff;
+    font-family: sans-serif;
+    line-height: 2.1;
+    font-size: large;
+}
+
+.dp {
+    width: 90px;
+    height: 90px;
+    background: url(../images/dp.png);
+    margin: 0 auto;
+    border-radius: 50%;
+    background-size: 90px;
+}
+
+.Back_lnk {
+    color: #556080;
+    font-size: x-large;
+    cursor: pointer;
+}
+/*************************************************END OF FOOTER**************************************************************/
+.form-control, .input-group-addon, .btn {
+    border-radius: 0px !important;
+}
+
+.form-group:hover {
+    background-color: #f7f7f7;
+    transition: all 100ms ease;
+}
+/******************************************************LOGIN PAGE*****************************************************************************/
+.login-box {
+    box-shadow: 0 1px 5px #666;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+    .login-box .l-header {
+        background: linear-gradient(#FF9800,#ff9811);
+        padding: 4px;
+    }
+
+.l-header > h3 {
+    margin: 5px auto;
+    text-align: center;
+    color: #fff;
+    font-size: medium;
+}
+
+.l-body {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.mb2 {
+    margin-bottom: 2px;
+}

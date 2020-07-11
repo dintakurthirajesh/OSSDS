@@ -1,0 +1,442 @@
+/*Added by Harish Annadevara 20/05/2017 for Design Modifications and Responsive Design optimized for mobile Devices*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.disabled {
+    cursor: not-allowed !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.form-group {
+    overflow: auto !important;
+}
+
+.btn {
+    border-radius: 0 !important;
+}
+
+.form-control {
+    border-radius: 0 !important;
+}
+
+.form-group {
+    overflow: auto;
+}
+/*adjust container height*/
+.a-h {
+    min-height: 400px;
+}
+
+.header {
+    background-color: #8bc34a;
+    background-image: url(../Headerimages/MainHeader.png);
+    background-size: cover;
+    border-bottom: 2px solid #558b2f;
+   
+}
+
+.headerimg {
+    text-align: center;
+}
+
+.headerimg2 {
+    text-align: center;
+}
+
+.headerimg img {
+    height: 160px;
+    width: auto;
+    text-align: center;
+}
+
+.headerimg2 img {
+    height: 120px;
+    width: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.headertext {
+    text-align: center;
+}
+
+    .headertext h1 {
+        /*font-weight: bold;*/
+        color: #ff8707;
+        text-shadow: 0 0 5px #000,1px 1px 5px #000,-1px -1px 5px #000,2px 2px 5px #000,-2px -2px 5px #000;
+        /*text-shadow:0 0 5px #fff,1px 1px 5px #fff,-1px -1px 5px #fff,2px 2px 5px #fff,-2px -2px 5px #fff;*/
+        margin-top: 15px !important;
+    }
+
+    .headertext h2 {
+        /*font-weight: bold;*/
+        color: #fff;
+        text-shadow: 0 0 5px #000,1px 1px 5px #000,-1px -1px 5px #000,2px 2px 5px #000,-2px -2px 5px #000;
+        margin-top: 10px;
+    }
+
+    .headertext h3 {
+        font-weight: bold;
+        color: #8bc34a;
+        text-shadow: 0 0 5px #000,1px 1px 5px #000,-1px -1px 5px #000,2px 2px 5px #000,-2px -2px 5px #000;
+        margin-top: 10px;
+    }
+
+/**********************************************END  OF HEADER************************************************************************/
+/********CUSTOM COLORS FOR BS NAVBAR*********/
+.navbar-green {
+    background-color: #7cb342;
+    border: 0px !important;
+    min-height: 40px !important;
+}
+
+.navbar {
+    border-radius: 0px !important;
+}
+
+.nav > li > a {
+    color: #fff !important;
+    font-size: larger !important;
+}
+
+    .nav > li > a:focus, .nav > li > a:hover {
+        background-color: #558b2f !important;
+    }
+
+.navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-toggle {
+    border: 1px solid #ccc !important;
+}
+
+.navbar-brand {
+    color: #fff;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    min-height: 35px !important;
+}
+
+/*Center align nav bar*/
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+/*ADJUST HEIGHT OF BS NAVBAR*/
+.navbar-nav > li > a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.navbar {
+    min-height: 35px !important;
+}
+
+.brand {
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    line-height: 40px;
+}
+/********************************************CARD DESIGNS**************************************************************/
+.card {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    /*box-shadow: 0 0 5px #bbb;*/
+    padding: 0 !important;
+    border: 1px solid #7cb342;
+}
+
+.card-header {
+    background-color: #7cb342;
+    text-align: center;
+    padding: 10px;
+}
+
+    .card-header span {
+        color: #fff;
+        font-size: large;
+    }
+
+.card-body {
+    padding: 15px !important;
+    overflow: auto;
+}
+/****************************************MASTER MENU***************************************************/
+div.menutitle {
+    background-color: #8BC34A;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+span.submenu {
+    padding: 5px;
+}
+/************************************PANELS DESIGNS**********************************************/
+.pane {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    box-shadow: 0 0 5px #bbb;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+    .pane:hover {
+        box-shadow: 0 2px 5px 2px #aaa;
+        cursor: pointer;
+    }
+
+.pane-title {
+    background-color: #7cb342;
+    text-align: left;
+    padding: 8px;
+}
+
+    .pane-title .fa {
+        font-size: 20px;
+        color: #fff;
+    }
+
+.pane:hover .fa.pull-right {
+    margin-right: 15px;
+    transition: all 100ms ease;
+}
+
+.pane:hover .st-img {
+    filter: hue-rotate(90deg);
+    transition: all 200ms ease;
+}
+
+.pane-title span {
+    color: #fff;
+    font-size: larger;
+}
+
+.pane-body {
+    padding: 15px !important;
+    overflow: auto;
+}
+
+.st-img {
+    height: 100px;
+    width: 100px;
+    background-position: -18px -18px;
+    background-size: 135px;
+}
+
+.st-info {
+    margin-left: 15px;
+}
+
+.infotext {
+    color: #616161;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.infocount {
+    font-size: xx-large;
+    color: #ff9800;
+    font-weight: bold;
+    line-height: 1;
+}
+/***************************************STATES IMAGES*****************************************************************/
+.user {
+    background-image: url(../StatesImages/user.jpg);
+}
+
+.ts {
+    background-image: url(../StatesImages/ts.jpg);
+}
+
+.ap {
+    background-image: url(../StatesImages/ap.jpg);
+}
+
+.tn {
+    background-image: url(../StatesImages/tn.jpg);
+}
+
+.bh {
+    background-image: url(../StatesImages/bh.jpg);
+}
+
+.cg {
+    background-image: url(../StatesImages/cg.jpg);
+}
+
+.del {
+    background-image: url(../StatesImages/del.jpg);
+}
+
+.goa {
+    background-image: url(../StatesImages/goa.jpg);
+}
+
+.gj {
+    background-image: url(../StatesImages/gj.jpg);
+}
+
+.hr {
+    background-image: url(../StatesImages/hr.jpg);
+}
+
+.jh {
+    background-image: url(../StatesImages/jh.jpg);
+}
+
+.kn {
+    background-image: url(../StatesImages/kn.jpg);
+}
+
+.kl {
+    background-image: url(../StatesImages/kl.jpg);
+}
+
+.mp {
+    background-image: url(../StatesImages/mp.jpg);
+}
+
+.mh {
+    background-image: url(../StatesImages/mh.jpg);
+}
+
+.orr {
+    background-image: url(../StatesImages/orr.png);
+}
+/*******************************************************END OF STATES IMAGES*********************************************************************************/
+.mt15 {
+    margin-top: 15px;
+}
+
+.mtb15 {
+    margin: 15px 0px;
+}
+
+/*************************FOOTER DESIGN SITE_FOOTER*****************************************/
+form {
+    margin: 0 !important;
+}
+
+.site-footer {
+    height: auto;
+    width: 100%;
+    background: #455A64;
+    margin-top: 30px;
+    text-align: center;
+    overflow: auto;
+}
+
+.footerhead {
+    overflow: auto;
+    background: #526974;
+    text-align: center;
+}
+
+.footerul {
+    list-style: none;
+    text-indent: 0;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    display: inline-block;
+}
+
+    .footerul > li {
+        float: left;
+        padding: 5px 10px;
+        border-bottom: 2px solid #526974;
+    }
+
+        .footerul > li:hover {
+            border-bottom: 2px solid #fff;
+        }
+
+        .footerul > li > a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+.f-p1 {
+    color: #fff;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.inline {
+    display: inline !important;
+}
+/*Dashboard Desigb CSS Start*/
+.dbcard {
+    margin-top: 30px;
+    box-shadow: 0 0 2px #aaa;
+    text-align: center;
+}
+
+    .dbcard h1 {
+        color: #fff;
+        margin-top: -5px !important;
+        text-shadow: -1px 1px 1px #353535;
+    }
+
+
+
+.icon span i {
+    color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: 0 0 0 7px rgba(255, 255, 255, 0.53);
+    position: relative;
+    top: -25px;
+    z-index: 50;
+}
+
+.button a {
+    color: #9E9E9E;
+    font-weight: bold;
+    background: #fff;
+    padding: 5px 25px;
+    border-radius: 30px;
+    box-shadow: 0 0 3px #777;
+    position: relative;
+    top: 8px;
+}
+
+.title {
+    color: #fff;
+}
+
+.redbg {
+    background: linear-gradient(#f95b42,#ff345e);
+}
+
+.orangebg {
+    background: linear-gradient(#fbbd1c,#f95b42);
+}
+
+.violetbg {
+    background: linear-gradient(#b448f4,#7352df);
+}
+
+.greenbg {
+    background: linear-gradient(#9ae377,#6ed639);
+}
+
+.bluebg {
+    background: linear-gradient(#00BCD4,#2196F3);
+}
+
+/*Dashboard Desigb CSS END*/

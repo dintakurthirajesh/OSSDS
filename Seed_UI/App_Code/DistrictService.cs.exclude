@@ -1,0 +1,140 @@
+﻿using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.Configuration;
+using System.Data;
+using Seed_BL;
+
+/// <summary>
+/// Summary description for DistrictService
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+// [System.Web.Script.Services.ScriptService]
+public class DistrictService : System.Web.Services.WebService {
+
+    ReportsBL rprt = new ReportsBL();
+    DataTable dt = new DataTable();
+    AOBAL objAO = new AOBAL();
+    string season = "";
+
+    public DistrictService () {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+
+    public struct DistData
+    {
+        public string year;
+        public string season;
+        public string mandal;
+        public string MandName;
+        public string crop;
+        public string CropName;
+        public string allotment;
+        public string stock_received;
+        public string sales;
+        public string farmers;
+    }
+
+
+    private DistData[] getDataFromDataTable_District(DataTable dt)
+    {
+        DistData[] obj = new DistData[dt.Rows.Count];
+        int i = 0;
+        foreach (DataRow dr in dt.Rows)
+        {
+            obj[i].year = dt.Rows[i][0].ToString();
+            obj[i].season = dt.Rows[i][1].ToString();
+            obj[i].mandal = dt.Rows[i][2].ToString();
+            obj[i].MandName = dt.Rows[i][3].ToString();
+            obj[i].crop = dt.Rows[i][4].ToString();
+            obj[i].CropName = dt.Rows[i][5].ToString();
+            obj[i].allotment = dt.Rows[i][6].ToString();
+            obj[i].stock_received = dt.Rows[i][7].ToString();
+            obj[i].sales = dt.Rows[i][8].ToString();
+            obj[i].farmers = dt.Rows[i][9].ToString();
+            i++;
+        }
+        return obj;
+    }
+
+
+
+    [WebMethod]
+    public DistData[] GetMandWsDistribution(string user, string pwd,string dist)
+    {
+        DistData[] objData = null;
+        if (user == "NIC" && pwd == "Sa@12345")
+        {
+            season = objAO.GetSeasonbyMonth(DateTime.Now.Month.ToString());
+            DataTable dt = rprt.GetDistributionMandalWs(DateTime.Now.Year.ToString(), season, dist);//replace by Session["distcode"].ToString()
+            objData = getDataFromDataTable_District(dt);
+            return objData;
+        }
+        else
+        {
+            return objData;
+        }
+    }
+
+
+
+
+
+    public struct PriceData
+    {
+        public string year;
+        public string season;
+        public string CropCode;
+        public string CropName;
+        public string CropVareityCode;
+        public string CropVareityName;
+        public string PricePerKg;
+    }
+
+
+    private PriceData[] getDataFromDataTable_Price(DataTable dt)
+    {
+        PriceData[] obj = new PriceData[dt.Rows.Count];
+        int i = 0;
+        foreach (DataRow dr in dt.Rows)
+        {
+            obj[i].year = dt.Rows[i][0].ToString();
+            obj[i].season = dt.Rows[i][1].ToString();
+            obj[i].CropCode = dt.Rows[i][2].ToString();
+            obj[i].CropName = dt.Rows[i][3].ToString();
+            obj[i].CropVareityCode = dt.Rows[i][4].ToString();
+            obj[i].CropVareityName = dt.Rows[i][5].ToString();
+            obj[i].PricePerKg = dt.Rows[i][6].ToString();
+            i++;
+        }
+        return obj;
+    }
+
+
+    [WebMethod]
+    public PriceData[] GetPrices(string user, string pwd)
+    {
+        PriceData[] objData = null;
+        if (user == "NIC" && pwd == "Sa@12345")
+        {
+            season = objAO.GetSeasonbyMonth(DateTime.Now.Month.ToString());
+            DataTable dt = rprt.GetPrices(DateTime.Now.Year.ToString(), season);
+            objData = getDataFromDataTable_Price(dt);
+            return objData;
+        }
+        else
+        {
+            return objData;
+        }
+    }
+
+}

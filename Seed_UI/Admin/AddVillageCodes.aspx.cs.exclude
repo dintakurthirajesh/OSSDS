@@ -1,0 +1,181 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using PB_DL;
+using System.Configuration;
+
+public partial class AddVillageCodes : System.Web.UI.Page
+{
+    gpEntry entry = new gpEntry();
+    CommonFuncs cf = new CommonFuncs();
+    DataTable dt;
+    string ConnKey = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            if ((Request.ServerVariables["HTTP_REFERER"] == null) || (Request.ServerVariables["HTTP_REFERER"] == ""))
+            {
+                Response.Redirect("~/Error.aspx",false);
+            }
+            else
+            {
+                string http_ref = Request.ServerVariables["HTTP_REFERER"].Trim();
+                string http_hos = Request.ServerVariables["HTTP_HOST"].Trim();
+                int len = http_hos.Length;
+                if (http_ref.IndexOf(http_hos, 0) < 0)
+                {
+                    Response.Redirect("~/Error.aspx",false);
+                }
+            }
+            if (Session["Role"].ToString() == null || Session["Role"].ToString() != "1")
+            {
+                Response.Redirect("~/Error.aspx",false);
+            }
+            if (!IsPostBack)
+            {
+                loadDistricts();                
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx",false);
+        }
+    }
+    protected void loadDistricts()
+    {
+        dt = entry.GetDitricts(ConnKey);
+        cf.BindDropDownLists(ddldist, dt, "DistName", "DistCode", "select district");
+    }
+    protected void ddldist_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        dt = new DataTable();
+        dt = entry.GetMandals(ddldist.SelectedValue, ConnKey);
+        cf.BindDropDownLists(ddlmand, dt, "MandName", "MandCode", "select Mandal");
+        CreateNewRow();
+    }
+    public void BindGrid()
+    {
+        DataTable dtt = new DataTable();
+        dtt.Clear();
+        dtt.Columns.Clear();
+       
+            dtt = entry.GetVillages(ddldist.SelectedValue, ddlmand.SelectedValue, ConnKey, "B");
+        if (dtt.Rows.Count > 0)
+        {
+            GridView1.DataSource = dtt;
+            GridView1.EditIndex = -1;
+            GridView1.DataBind();
+        }
+        else
+        {
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+        }
+    }
+    protected void ddlmand_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        CreateNewRow();
+        BindGrid();
+    }
+    protected void CreateNewRow()
+    {
+        if (ddlmand.SelectedIndex == 0)
+            dt = entry.GetVillagesDistWise(ddldist.SelectedValue, ConnKey, "E");
+        else
+            dt = entry.GetVillages(ddldist.SelectedValue, ddlmand.SelectedValue,ConnKey,"A");
+        gvVillages.DataSource = dt;
+        gvVillages.DataBind();
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        DataTable dtvill = new DataTable();
+        dtvill.Columns.Add("distcode", typeof(string));
+        dtvill.Columns.Add("mandcode", typeof(string));
+        dtvill.Columns.Add("villcode", typeof(string));
+        dtvill.Columns.Add("vill_lgcode", typeof(string));
+        int j = 0;
+        foreach (GridViewRow gr in gvVillages.Rows)
+        {          
+            dtvill.Rows.Add();
+            dtvill.Rows[j]["distcode"] = ddldist.SelectedValue;
+            dtvill.Rows[j]["mandcode"] = ddlmand.SelectedValue;
+            dtvill.Rows[j]["villcode"] = ((Label)gr.FindControl("lblVillcode")).Text;
+            dtvill.Rows[j]["vill_lgcode"] = ((TextBox)gr.FindControl("txtVillcode")).Text;
+            j++;           
+        }
+        dt = new DataTable();
+        dt = entry.AddVillCodes(dtvill, ddldist.SelectedValue, ddlmand.SelectedValue);
+        if (dt.Rows.Count > 0)
+        {
+           
+        }
+        else
+        {
+            cf.ShowAlertMessage("LGCodes Updated");
+            BindGrid();
+        }
+    }
+
+    protected void EditRow(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        this.BindGrid();
+    }
+
+    protected void CancelEditRow(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        this.BindGrid();
+    }
+
+    
+    protected void UpdateRow(object sendedr, GridViewUpdateEventArgs e)
+    {
+        string district = GridView1.DataKeys[e.RowIndex].Values[0].ToString();
+        string mandal = GridView1.DataKeys[e.RowIndex].Values[1].ToString();
+        string village = GridView1.DataKeys[e.RowIndex].Values[2].ToString();
+        
+        GridViewRow gr = GridView1.Rows[e.RowIndex] as GridViewRow;
+        string lgcode = ((TextBox)gr.FindControl("txtlgcode")).Text;
+        dt = new DataTable();
+        dt = entry.UpdateLGCode(district, mandal, village, lgcode, ConnKey);
+        if (dt.Rows.Count > 0)
+        {
+
+        }
+        else
+        {
+            cf.ShowAlertMessage("Updated");
+            GridView1.EditIndex = -1;
+            this.BindGrid();
+        }
+    }
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName == "Dlt")
+        {
+            DataTable dt = new DataTable();
+            GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+            Label dist = (Label)gvrow.FindControl("lbldistcode");
+            Label mand = (Label)gvrow.FindControl("lblmandcode");
+            Label vill = (Label)gvrow.FindControl("lblvillcode");
+            Label vill_lg = (Label)gvrow.FindControl("lblcode");
+            dt = entry.DeleteVillage(dist.Text, mand.Text, vill.Text, vill_lg.Text, ConnKey);
+            if (dt.Rows.Count > 0)
+            {
+                cf.ShowAlertMessage(dt.Rows[0][0].ToString());
+            }
+            else
+            {
+                cf.ShowAlertMessage("Not Deleted");
+            }
+        }
+    }
+}

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns0="http://srdhuidinfoservices/ecentric/com/xsd" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:axis2="http://srdhuidinfoservices/ecentric/com/" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://srdhuidinfoservices/ecentric/com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Services</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:ns="http://srdhuidinfoservices/ecentric/com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://srdhuidinfoservices/ecentric/com/xsd">
+      <xs:element name="UidOrEIDValidation">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="EID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UidOrEIDValidationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="EID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarInfoByMultipleFieldSearch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="citizenName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="careOfName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="EID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="mobileNum" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="dateOfBirth" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="doorNum" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="districtCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="mandalCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="villageCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="pincode" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarInfoByMultipleFieldSearchResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarInfoNew">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="EID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarInfoNewResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarPhoto">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="pincode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAadhaarPhotoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHouseHoldInformation">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="houseHoldOption" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="AadhaarOrRationCardNumber" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHouseHoldInformationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHouseHoldInformationByAadhaarOrRationCard">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="houseHoldOption" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="AadhaarOrRationCardNumber" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHouseHoldInformationByAadhaarOrRationCardResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIndvidualInformation">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="uid" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIndvidualInformationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIndvidualInformationByAadhaar">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="uid" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIndvidualInformationByAadhaarResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMultiSchemeBenifitsByAadhaar">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="EID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMultiSchemeBenifitsByAadhaarResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="insertdata">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="str" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="insertdataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="searchAadhaarInfoByDistrictMandalVillagePincodeWise">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="citizenName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="UID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="EID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="districtCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="mandalCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="villageCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="pincode" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="searchAadhaarInfoByDistrictMandalVillagePincodeWiseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="UidOrEIDValidationRequest">
+    <wsdl:part name="parameters" element="ns0:UidOrEIDValidation" />
+  </wsdl:message>
+  <wsdl:message name="UidOrEIDValidationResponse">
+    <wsdl:part name="parameters" element="ns0:UidOrEIDValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getIndvidualInformationRequest">
+    <wsdl:part name="parameters" element="ns0:getIndvidualInformation" />
+  </wsdl:message>
+  <wsdl:message name="getIndvidualInformationResponse">
+    <wsdl:part name="parameters" element="ns0:getIndvidualInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchAadhaarInfoByDistrictMandalVillagePincodeWiseRequest">
+    <wsdl:part name="parameters" element="ns0:searchAadhaarInfoByDistrictMandalVillagePincodeWise" />
+  </wsdl:message>
+  <wsdl:message name="searchAadhaarInfoByDistrictMandalVillagePincodeWiseResponse">
+    <wsdl:part name="parameters" element="ns0:searchAadhaarInfoByDistrictMandalVillagePincodeWiseResponse" />
+  </wsdl:message>
+  <wsdl:message name="insertdataRequest">
+    <wsdl:part name="parameters" element="ns0:insertdata" />
+  </wsdl:message>
+  <wsdl:message name="insertdataResponse">
+    <wsdl:part name="parameters" element="ns0:insertdataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarPhotoRequest">
+    <wsdl:part name="parameters" element="ns0:getAadhaarPhoto" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarPhotoResponse">
+    <wsdl:part name="parameters" element="ns0:getAadhaarPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarInfoRequest">
+    <wsdl:part name="parameters" element="ns0:getAadhaarInfo" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarInfoResponse">
+    <wsdl:part name="parameters" element="ns0:getAadhaarInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getIndvidualInformationByAadhaarRequest">
+    <wsdl:part name="parameters" element="ns0:getIndvidualInformationByAadhaar" />
+  </wsdl:message>
+  <wsdl:message name="getIndvidualInformationByAadhaarResponse">
+    <wsdl:part name="parameters" element="ns0:getIndvidualInformationByAadhaarResponse" />
+  </wsdl:message>
+  <wsdl:message name="getHouseHoldInformationByAadhaarOrRationCardRequest">
+    <wsdl:part name="parameters" element="ns0:getHouseHoldInformationByAadhaarOrRationCard" />
+  </wsdl:message>
+  <wsdl:message name="getHouseHoldInformationByAadhaarOrRationCardResponse">
+    <wsdl:part name="parameters" element="ns0:getHouseHoldInformationByAadhaarOrRationCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMultiSchemeBenifitsByAadhaarRequest">
+    <wsdl:part name="parameters" element="ns0:getMultiSchemeBenifitsByAadhaar" />
+  </wsdl:message>
+  <wsdl:message name="getMultiSchemeBenifitsByAadhaarResponse">
+    <wsdl:part name="parameters" element="ns0:getMultiSchemeBenifitsByAadhaarResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarInfoByMultipleFieldSearchRequest">
+    <wsdl:part name="parameters" element="ns0:getAadhaarInfoByMultipleFieldSearch" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarInfoByMultipleFieldSearchResponse">
+    <wsdl:part name="parameters" element="ns0:getAadhaarInfoByMultipleFieldSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="getHouseHoldInformationRequest">
+    <wsdl:part name="parameters" element="ns0:getHouseHoldInformation" />
+  </wsdl:message>
+  <wsdl:message name="getHouseHoldInformationResponse">
+    <wsdl:part name="parameters" element="ns0:getHouseHoldInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarInfoNewRequest">
+    <wsdl:part name="parameters" element="ns0:getAadhaarInfoNew" />
+  </wsdl:message>
+  <wsdl:message name="getAadhaarInfoNewResponse">
+    <wsdl:part name="parameters" element="ns0:getAadhaarInfoNewResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServicesPortType">
+    <wsdl:operation name="UidOrEIDValidation">
+      <wsdl:input wsaw:Action="urn:UidOrEIDValidation" message="axis2:UidOrEIDValidationRequest" />
+      <wsdl:output wsaw:Action="urn:UidOrEIDValidationResponse" message="axis2:UidOrEIDValidationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformation">
+      <wsdl:input wsaw:Action="urn:getIndvidualInformation" message="axis2:getIndvidualInformationRequest" />
+      <wsdl:output wsaw:Action="urn:getIndvidualInformationResponse" message="axis2:getIndvidualInformationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchAadhaarInfoByDistrictMandalVillagePincodeWise">
+      <wsdl:input wsaw:Action="urn:searchAadhaarInfoByDistrictMandalVillagePincodeWise" message="axis2:searchAadhaarInfoByDistrictMandalVillagePincodeWiseRequest" />
+      <wsdl:output wsaw:Action="urn:searchAadhaarInfoByDistrictMandalVillagePincodeWiseResponse" message="axis2:searchAadhaarInfoByDistrictMandalVillagePincodeWiseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="insertdata">
+      <wsdl:input wsaw:Action="urn:insertdata" message="axis2:insertdataRequest" />
+      <wsdl:output wsaw:Action="urn:insertdataResponse" message="axis2:insertdataResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarPhoto">
+      <wsdl:input wsaw:Action="urn:getAadhaarPhoto" message="axis2:getAadhaarPhotoRequest" />
+      <wsdl:output wsaw:Action="urn:getAadhaarPhotoResponse" message="axis2:getAadhaarPhotoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfo">
+      <wsdl:input wsaw:Action="urn:getAadhaarInfo" message="axis2:getAadhaarInfoRequest" />
+      <wsdl:output wsaw:Action="urn:getAadhaarInfoResponse" message="axis2:getAadhaarInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformationByAadhaar">
+      <wsdl:input wsaw:Action="urn:getIndvidualInformationByAadhaar" message="axis2:getIndvidualInformationByAadhaarRequest" />
+      <wsdl:output wsaw:Action="urn:getIndvidualInformationByAadhaarResponse" message="axis2:getIndvidualInformationByAadhaarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformationByAadhaarOrRationCard">
+      <wsdl:input wsaw:Action="urn:getHouseHoldInformationByAadhaarOrRationCard" message="axis2:getHouseHoldInformationByAadhaarOrRationCardRequest" />
+      <wsdl:output wsaw:Action="urn:getHouseHoldInformationByAadhaarOrRationCardResponse" message="axis2:getHouseHoldInformationByAadhaarOrRationCardResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMultiSchemeBenifitsByAadhaar">
+      <wsdl:input wsaw:Action="urn:getMultiSchemeBenifitsByAadhaar" message="axis2:getMultiSchemeBenifitsByAadhaarRequest" />
+      <wsdl:output wsaw:Action="urn:getMultiSchemeBenifitsByAadhaarResponse" message="axis2:getMultiSchemeBenifitsByAadhaarResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoByMultipleFieldSearch">
+      <wsdl:input wsaw:Action="urn:getAadhaarInfoByMultipleFieldSearch" message="axis2:getAadhaarInfoByMultipleFieldSearchRequest" />
+      <wsdl:output wsaw:Action="urn:getAadhaarInfoByMultipleFieldSearchResponse" message="axis2:getAadhaarInfoByMultipleFieldSearchResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformation">
+      <wsdl:input wsaw:Action="urn:getHouseHoldInformation" message="axis2:getHouseHoldInformationRequest" />
+      <wsdl:output wsaw:Action="urn:getHouseHoldInformationResponse" message="axis2:getHouseHoldInformationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoNew">
+      <wsdl:input wsaw:Action="urn:getAadhaarInfoNew" message="axis2:getAadhaarInfoNewRequest" />
+      <wsdl:output wsaw:Action="urn:getAadhaarInfoNewResponse" message="axis2:getAadhaarInfoNewResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicesSOAP11Binding" type="axis2:ServicesPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UidOrEIDValidation">
+      <soap:operation soapAction="urn:UidOrEIDValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformation">
+      <soap:operation soapAction="urn:getIndvidualInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchAadhaarInfoByDistrictMandalVillagePincodeWise">
+      <soap:operation soapAction="urn:searchAadhaarInfoByDistrictMandalVillagePincodeWise" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertdata">
+      <soap:operation soapAction="urn:insertdata" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarPhoto">
+      <soap:operation soapAction="urn:getAadhaarPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfo">
+      <soap:operation soapAction="urn:getAadhaarInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformationByAadhaar">
+      <soap:operation soapAction="urn:getIndvidualInformationByAadhaar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformationByAadhaarOrRationCard">
+      <soap:operation soapAction="urn:getHouseHoldInformationByAadhaarOrRationCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMultiSchemeBenifitsByAadhaar">
+      <soap:operation soapAction="urn:getMultiSchemeBenifitsByAadhaar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoByMultipleFieldSearch">
+      <soap:operation soapAction="urn:getAadhaarInfoByMultipleFieldSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformation">
+      <soap:operation soapAction="urn:getHouseHoldInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoNew">
+      <soap:operation soapAction="urn:getAadhaarInfoNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServicesSOAP12Binding" type="axis2:ServicesPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UidOrEIDValidation">
+      <soap12:operation soapAction="urn:UidOrEIDValidation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformation">
+      <soap12:operation soapAction="urn:getIndvidualInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchAadhaarInfoByDistrictMandalVillagePincodeWise">
+      <soap12:operation soapAction="urn:searchAadhaarInfoByDistrictMandalVillagePincodeWise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertdata">
+      <soap12:operation soapAction="urn:insertdata" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarPhoto">
+      <soap12:operation soapAction="urn:getAadhaarPhoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfo">
+      <soap12:operation soapAction="urn:getAadhaarInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformationByAadhaar">
+      <soap12:operation soapAction="urn:getIndvidualInformationByAadhaar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformationByAadhaarOrRationCard">
+      <soap12:operation soapAction="urn:getHouseHoldInformationByAadhaarOrRationCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMultiSchemeBenifitsByAadhaar">
+      <soap12:operation soapAction="urn:getMultiSchemeBenifitsByAadhaar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoByMultipleFieldSearch">
+      <soap12:operation soapAction="urn:getAadhaarInfoByMultipleFieldSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformation">
+      <soap12:operation soapAction="urn:getHouseHoldInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoNew">
+      <soap12:operation soapAction="urn:getAadhaarInfoNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServicesHttpBinding" type="axis2:ServicesPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="UidOrEIDValidation">
+      <http:operation location="Services/UidOrEIDValidation" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformation">
+      <http:operation location="Services/getIndvidualInformation" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchAadhaarInfoByDistrictMandalVillagePincodeWise">
+      <http:operation location="Services/searchAadhaarInfoByDistrictMandalVillagePincodeWise" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertdata">
+      <http:operation location="Services/insertdata" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarPhoto">
+      <http:operation location="Services/getAadhaarPhoto" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfo">
+      <http:operation location="Services/getAadhaarInfo" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndvidualInformationByAadhaar">
+      <http:operation location="Services/getIndvidualInformationByAadhaar" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformationByAadhaarOrRationCard">
+      <http:operation location="Services/getHouseHoldInformationByAadhaarOrRationCard" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMultiSchemeBenifitsByAadhaar">
+      <http:operation location="Services/getMultiSchemeBenifitsByAadhaar" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoByMultipleFieldSearch">
+      <http:operation location="Services/getAadhaarInfoByMultipleFieldSearch" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHouseHoldInformation">
+      <http:operation location="Services/getHouseHoldInformation" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAadhaarInfoNew">
+      <http:operation location="Services/getAadhaarInfoNew" />
+      <wsdl:input>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Services">
+    <wsdl:port name="ServicesSOAP11port_http" binding="axis2:ServicesSOAP11Binding">
+      <soap:address location="http://164.100.132.193:8010/TSSRDHAadhaarInfoServices/services/Services.ServicesSOAP11port_http/" />
+    </wsdl:port>
+    <wsdl:port name="ServicesSOAP12port_http" binding="axis2:ServicesSOAP12Binding">
+      <soap12:address location="http://164.100.132.193:8010/TSSRDHAadhaarInfoServices/services/Services.ServicesSOAP12port_http/" />
+    </wsdl:port>
+    <wsdl:port name="ServicesHttpport" binding="axis2:ServicesHttpBinding">
+      <http:address location="http://164.100.132.193:8010/TSSRDHAadhaarInfoServices/services/Services.ServicesHttpport/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

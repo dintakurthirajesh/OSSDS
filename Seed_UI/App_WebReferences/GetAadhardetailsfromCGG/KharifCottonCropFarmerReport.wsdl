@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CropFarmerSummayReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DistrictId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MandalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VillageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CropFarmerSummayReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CropFarmerSummayReportResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFarmerDetailsByAadhar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AadharNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFarmerDetailsByAadharResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFarmerDetailsByAadharResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CropFarmerSummayReportSoapIn">
+    <wsdl:part name="parameters" element="tns:CropFarmerSummayReport" />
+  </wsdl:message>
+  <wsdl:message name="CropFarmerSummayReportSoapOut">
+    <wsdl:part name="parameters" element="tns:CropFarmerSummayReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerDetailsByAadharSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFarmerDetailsByAadhar" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerDetailsByAadharSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFarmerDetailsByAadharResponse" />
+  </wsdl:message>
+  <wsdl:portType name="KharifCottonCropFarmerReportSoap">
+    <wsdl:operation name="CropFarmerSummayReport">
+      <wsdl:input message="tns:CropFarmerSummayReportSoapIn" />
+      <wsdl:output message="tns:CropFarmerSummayReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFarmerDetailsByAadhar">
+      <wsdl:input message="tns:GetFarmerDetailsByAadharSoapIn" />
+      <wsdl:output message="tns:GetFarmerDetailsByAadharSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="KharifCottonCropFarmerReportSoap" type="tns:KharifCottonCropFarmerReportSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CropFarmerSummayReport">
+      <soap:operation soapAction="http://tempuri.org/CropFarmerSummayReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFarmerDetailsByAadhar">
+      <soap:operation soapAction="http://tempuri.org/GetFarmerDetailsByAadhar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KharifCottonCropFarmerReportSoap12" type="tns:KharifCottonCropFarmerReportSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CropFarmerSummayReport">
+      <soap12:operation soapAction="http://tempuri.org/CropFarmerSummayReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFarmerDetailsByAadhar">
+      <soap12:operation soapAction="http://tempuri.org/GetFarmerDetailsByAadhar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KharifCottonCropFarmerReport">
+    <wsdl:port name="KharifCottonCropFarmerReportSoap" binding="tns:KharifCottonCropFarmerReportSoap">
+      <soap:address location="http://ppstest.cgg.gov.in/MBMP/KharifCottonCropFarmerReport.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KharifCottonCropFarmerReportSoap12" binding="tns:KharifCottonCropFarmerReportSoap12">
+      <soap12:address location="http://ppstest.cgg.gov.in/MBMP/KharifCottonCropFarmerReport.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

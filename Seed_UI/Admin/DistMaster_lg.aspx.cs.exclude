@@ -1,0 +1,416 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Seed_DL;
+using System.Data;
+using System.Web.Security;
+using Seed_BE;
+
+public partial class DistMaster : System.Web.UI.Page
+{
+    MasterDAL objDist = new MasterDAL();
+    CommonFuncs objCommon = new CommonFuncs();
+    LocationBE objinsert = new LocationBE();
+    Validate objValidate = new Validate();
+    string INSERT, UPDATE;
+    string  Flag_IUP, UserName = "";
+ 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+
+            if ((Request.ServerVariables["HTTP_REFERER"] == null) || (Request.ServerVariables["HTTP_REFERER"] == ""))
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            else
+            {
+                string http_ref = Request.ServerVariables["HTTP_REFERER"].Trim();
+                string http_hos = Request.ServerVariables["HTTP_HOST"].Trim();
+                int len = http_hos.Length;
+                if (http_ref.IndexOf(http_hos, 0) < 0)
+                {
+                    Response.Redirect("~/Error.aspx");
+                }
+            }
+         //   if (Session["Role"].ToString() == null || Session["Role"].ToString() != "1")
+            if (Session["Role"].ToString() == null || Session["Role"].ToString() != "Commissionerate, Seeds")
+            {
+                Response.Redirect("~/Error.aspx");
+            }
+            lblUsrName.Text = Session["UsrName"].ToString();
+            lblDate.Text = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+            if (!IsPostBack)
+            {
+                BindStates();
+                this.txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                lblDcode.Visible = false;
+                btn_Update.Visible = false;
+                GetDistCode();
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+    protected void GetDistCode()
+    {
+        DataTable dt = new DataTable();
+        dt = objDist.GetMaxCode();
+        txtDistCode.Text = dt.Rows[0][0].ToString();
+        txtDistCode.Enabled = true;
+    }
+    protected void BindStates()
+    {
+        DataTable dt = new DataTable();
+        dt = objDist.getStates();
+        objCommon.BindDropDownLists(ddlstate, dt, "StateName", "StateCode", "Select State");
+    }
+    protected void ddlstate_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        getDistrictDtls();
+    }
+    protected bool ValidateForm()
+    {
+        if (txtDistCode.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter District Code");
+            txtDistCode.Focus();
+            return false;
+        }
+        if (txtDistName.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter District Name");
+            txtDistName.Focus();
+            return false;
+        }
+        if (txt_Date.Text == "")
+        {
+            objCommon.ShowAlertMessage("Enter Date");
+            txt_Date.Focus();
+            return false;
+        }
+        else
+        {
+            if (!objValidate.IsDate(txt_Date.Text.Trim()))
+            {
+                objCommon.ShowAlertMessage("Please Enter Valid date");
+                txt_Date.Focus();
+                return false; 
+            }
+        }
+        return true;
+    }
+    IFormatProvider provider = new System.Globalization.CultureInfo("fr-FR", true);
+    protected void btn_Save_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ValidateForm())
+            {
+               // StateCode = ddlstate.SelectedValue;
+                INSERT = "I";
+                UserName = Session["UsrName"].ToString();
+                int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+                DataTable dt = new DataTable();
+
+                // string date = txt_Date.Text;
+                DateTime date = DateTime.Parse(txt_Date.Text.Trim(), provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+
+                objinsert.statecd = ddlstate.SelectedValue; ;
+                if (txtDistCodelg.Text != "")
+                {
+                    objinsert.distlgcd = txtDistCodelg.Text;
+                }
+                else
+                {
+                    objinsert.distlgcd = "";
+                }
+                objinsert.distcd = txtDistCode.Text;
+                objinsert.distname = txtDistName.Text;
+                objinsert.efct_dt = date;
+                objinsert.userid = UserName;
+                objinsert.active = ActiveSt;
+                objinsert.Flage = INSERT;
+                // date = DateTime.Now.ToString("yyyy/MM/dd");
+                dt = objDist.insertDistDAL(objinsert);//StateCode, txtDistCode.Text.Trim(), txtDistName.Text.Trim(), date, ActiveSt, UserName, INSERT);
+                if (dt.Rows.Count > 0)
+                {
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                    rbnSy.Checked = true;
+                    txtDistName.Text = "";
+                    txtDistCode.Text = "";
+                    txtDistCodelg.Text = "";
+                    rbnSn.Checked = false;
+                }
+                getDistrictDtls();
+                GetDistCode();
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+
+
+    protected void getDistrictDtls()
+    {
+        DataTable dtDistricts = new DataTable();
+        dtDistricts = objDist.viewdataDAL(ddlstate.SelectedValue);
+        GvDistricts.DataSource = dtDistricts;
+        GvDistricts.DataBind();
+    }
+
+    protected void GvDistricts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        try
+        {
+            GvDistricts.PageIndex = e.NewPageIndex;
+            getDistrictDtls();
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+
+    protected void GvDistricts_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            if (e.CommandName == "Dlt")
+            {
+                DataTable dt = new DataTable();
+                UserName = Session["UsrName"].ToString();
+                Flag_IUP = "D";
+                DateTime date = DateTime.Parse(txt_Date.Text.Trim(), provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+                GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                Label lbldistcode = (Label)gvrow.FindControl("lbldcode");
+                Label lbldistlgcode = (Label)gvrow.FindControl("lbllgdcode");
+                Label lbldistname = (Label)gvrow.FindControl("lbldnm");
+                  objinsert.statecd = ddlstate.SelectedValue;
+                  objinsert.distlgcd = lbldistlgcode.Text;
+                objinsert.distcd = lbldistcode.Text;
+                objinsert.distname = lbldistname.Text;
+                objinsert.efct_dt = date;
+                objinsert.Flage = Flag_IUP;
+                // date = DateTime.Now.ToString("yyyy/MM/dd");
+                dt = objDist.insertDistDAL(objinsert);
+
+               // dt = objDist.DeletedistrictBAL(ddlstate.SelectedValue, lbldistcode.Text, lbldistname.Text, Flag_IUP);
+                if (dt.Rows.Count > 0)
+                {
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    txtDistCode.Text = "";
+                    txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                    txtDistCode.Enabled = true;
+                    txtDistName.Text = "";
+                    btn_Save.Visible = true;
+                    btn_Update.Visible = false;
+                    rbnSn.Checked = false;
+                    rbnSy.Checked = true;
+                    getDistrictDtls();
+                    GetDistCode();
+                }
+            }
+            else  if (e.CommandName == "Edt")
+                {
+                    GridViewRow gvrow = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                    txtDistName.Text = ((Label)(gvrow.FindControl("lbldnm"))).Text;
+                    lblDcode.Text = ((Label)(gvrow.FindControl("lbldcode"))).Text;
+                    txtDistCodelg.Text = ((Label)(gvrow.FindControl("lbllgdcode"))).Text;
+                    txtDistCode.Text = ((Label)(gvrow.FindControl("lbldcode"))).Text;
+                    string status = ((Label)(gvrow.FindControl("lblstatus"))).Text;
+                    txt_Date.Text = ((Label)(gvrow.FindControl("lbleffdate"))).Text;
+                    if (status == "Yes")
+                    {
+                        rbnSy.Checked = true;
+                        rbnSn.Checked = false;
+                    }
+                    if (status == "No")
+                    {
+                        rbnSn.Checked = true;
+                        rbnSy.Checked = false;
+                    }
+                    txt_Date.Enabled = true;
+                    btn_Update.Visible = true;
+                    btn_Save.Visible = false;
+                }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+    protected void lnkEdit_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            LinkButton btnsubmit = sender as LinkButton;
+            GridViewRow gRow = (GridViewRow)btnsubmit.NamingContainer;
+            string status = ((Label)(gRow.FindControl("lblstatus"))).Text;
+            txtDistCode.Text = ((Label)(gRow.FindControl("lbldcode"))).Text;
+
+            txt_Date.Text = ((Label)(gRow.FindControl("lbleffdate"))).Text;
+            txtDistName.Text = ((Label)(gRow.FindControl("lbldnm"))).Text;
+            if (status == "Yes")
+            {
+                rbnSy.Checked = true;
+                rbnSn.Checked = false;
+            }
+            if (status == "No")
+            {
+                rbnSn.Checked = true;
+                rbnSy.Checked = false;
+            }
+            txtDistCode.Enabled = false;
+            txt_Date.Enabled = false;
+            btn_Update.Visible = true;
+            btn_Save.Visible = false;
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+
+    }
+
+    protected void btn_Update_Click(object sender, EventArgs e)
+    {
+        
+        //try
+        //{
+        //    if (ValidateForm())
+        //    {
+        //        string UserName = Session["UsrName"].ToString();
+        //        UPDATE = "U";
+        //        int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+        //        DataTable dt = new DataTable();
+
+        //        dt = objDist.UpdateDistBAL(ddlstate.SelectedValue, txtDistCode.Text, txtDistName.Text.Trim(), ActiveSt, Session["UsrName"].ToString());
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+        //            btn_Save.Visible = true;
+        //            txtDistCode.Enabled = true;
+        //            txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        //            rbnSy.Checked = true;
+        //            txtDistName.Text = "";
+        //            txtDistCode.Text = "";
+        //            btn_Update.Visible = false;
+        //            txt_Date.Enabled = true;
+        //            rbnSn.Checked = false;
+        //        }
+        //        getDistrictDtls();
+        //        GetDistCode();
+
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+        //    Response.Redirect("~/Error.aspx");
+        //}
+        try
+        {
+            if (ValidateForm())
+            {
+               
+               
+                UserName = Session["UsrName"].ToString();
+                int ActiveSt = (rbnSn.Checked ? 0 : (rbnSy.Checked ? 1 : 0));
+                DataTable dt = new DataTable();
+
+                // string date = txt_Date.Text;
+                DateTime date = DateTime.Parse(txt_Date.Text.Trim(), provider, System.Globalization.DateTimeStyles.NoCurrentDateDefault).Date;
+
+                objinsert.statecd = ddlstate.SelectedValue;
+                objinsert.distlgcd = txtDistCodelg.Text;
+                objinsert.distcd = lblDcode.Text;
+                objinsert.distname = txtDistName.Text;
+                objinsert.efct_dt = date;
+                objinsert.userid = UserName;
+                objinsert.active = ActiveSt;
+                objinsert.Flage = "U";
+                // date = DateTime.Now.ToString("yyyy/MM/dd");
+                dt = objDist.insertDistDAL(objinsert);//StateCode, txtDistCode.Text.Trim(), txtDistName.Text.Trim(), date, ActiveSt, UserName, INSERT);
+                if (dt.Rows.Count > 0)
+                {
+                    objCommon.ShowAlertMessage(dt.Rows[0][0].ToString());
+                    txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+                    rbnSy.Checked = true;
+                    txtDistName.Text = "";
+                    txtDistCode.Text = "";
+                    txtDistCodelg.Text = "";
+                    rbnSn.Checked = false;
+                }
+                getDistrictDtls();
+                GetDistCode();
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+
+
+    protected void txtDistCode_TextChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (txtDistCode.Text.Length < 2)
+            {
+                txtDistCode.Text = "0" + txtDistCode.Text;
+            }
+            else
+            {
+                txtDistCode.Text = txtDistCode.Text;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+
+
+    protected void btn_clear_Click(object sender, EventArgs e)
+    {
+         try
+        {
+        BindStates();
+        this.txt_Date.Text = DateTime.Today.ToString("dd/MM/yyyy");
+        lblDcode.Visible = false;
+        btn_Update.Visible = false;
+        GetDistCode();      
+        btn_Save.Visible = true;
+        txtDistCode.Enabled = true;        
+        rbnSy.Checked = true;
+        txtDistName.Text = "";
+       // txtDistCode.Text = "";
+     
+      
+        
+        }
+         catch (Exception ex)
+         {
+             ExceptionLogging.SendExcepToDB(ex, "", Request.ServerVariables["REMOTE_ADDR"].ToString());
+             Response.Redirect("~/Error.aspx");
+         }
+    }
+}

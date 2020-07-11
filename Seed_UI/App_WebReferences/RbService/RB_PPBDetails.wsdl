@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetFarmerPPBDetailsbyAadhar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AadhaarId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFarmerPPBDetailsbyAadharResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFarmerPPBDetailsbyAadharResult" type="tns:ArrayOfPPB_FarmerData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPPB_FarmerData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PPB_FarmerData" type="tns:PPB_FarmerData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PPB_FarmerData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SuccessFlag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuccessMsg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PPBNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FarmerName_Eng" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FarmerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FatherName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GenderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CasteName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DISTNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MANDNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VILLNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aadhaarid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobileNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KhataNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Survey_Extent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalExtent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IFSCCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BANKNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BranchName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BranchCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="distcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mandcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="villcode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfPPB_FarmerData" nillable="true" type="tns:ArrayOfPPB_FarmerData" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetFarmerPPBDetailsbyAadharSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFarmerPPBDetailsbyAadhar" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerPPBDetailsbyAadharSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFarmerPPBDetailsbyAadharResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerPPBDetailsbyAadharHttpGetIn">
+    <wsdl:part name="AadhaarId" type="s:string" />
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerPPBDetailsbyAadharHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPPB_FarmerData" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerPPBDetailsbyAadharHttpPostIn">
+    <wsdl:part name="AadhaarId" type="s:string" />
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFarmerPPBDetailsbyAadharHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPPB_FarmerData" />
+  </wsdl:message>
+  <wsdl:portType name="RB_PPBDetailsSoap">
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <wsdl:input message="tns:GetFarmerPPBDetailsbyAadharSoapIn" />
+      <wsdl:output message="tns:GetFarmerPPBDetailsbyAadharSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="RB_PPBDetailsHttpGet">
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <wsdl:input message="tns:GetFarmerPPBDetailsbyAadharHttpGetIn" />
+      <wsdl:output message="tns:GetFarmerPPBDetailsbyAadharHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="RB_PPBDetailsHttpPost">
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <wsdl:input message="tns:GetFarmerPPBDetailsbyAadharHttpPostIn" />
+      <wsdl:output message="tns:GetFarmerPPBDetailsbyAadharHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RB_PPBDetailsSoap" type="tns:RB_PPBDetailsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <soap:operation soapAction="http://tempuri.org/GetFarmerPPBDetailsbyAadhar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RB_PPBDetailsSoap12" type="tns:RB_PPBDetailsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <soap12:operation soapAction="http://tempuri.org/GetFarmerPPBDetailsbyAadhar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RB_PPBDetailsHttpGet" type="tns:RB_PPBDetailsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <http:operation location="/GetFarmerPPBDetailsbyAadhar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RB_PPBDetailsHttpPost" type="tns:RB_PPBDetailsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetFarmerPPBDetailsbyAadhar">
+      <http:operation location="/GetFarmerPPBDetailsbyAadhar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RB_PPBDetails">
+    <wsdl:port name="RB_PPBDetailsSoap" binding="tns:RB_PPBDetailsSoap">
+      <soap:address location="http://rythubandhu.telangana.gov.in/RB_PPBDetails.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RB_PPBDetailsSoap12" binding="tns:RB_PPBDetailsSoap12">
+      <soap12:address location="http://rythubandhu.telangana.gov.in/RB_PPBDetails.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RB_PPBDetailsHttpGet" binding="tns:RB_PPBDetailsHttpGet">
+      <http:address location="http://rythubandhu.telangana.gov.in/RB_PPBDetails.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RB_PPBDetailsHttpPost" binding="tns:RB_PPBDetailsHttpPost">
+      <http:address location="http://rythubandhu.telangana.gov.in/RB_PPBDetails.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

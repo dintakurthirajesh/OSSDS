@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/uatwebland/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/uatwebland/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/uatwebland/">
+      <s:element name="GetCurrentPahaniDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sur_No" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentPahaniDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentPahaniDetailsResult" type="tns:ArrayOfPahani" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPahani">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="pahani" type="tns:pahani" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pahani">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pSerialNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSurvey_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTotal_Extent" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pUncultivated_Land" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pCultivatable_Land" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Nature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTax" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Classification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pWater_Resource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pAyakat_Extent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pKhata_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pOccupant_Extent" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pEnjoyment_Nature" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pVillage_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pVillage_Code" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pDelete_Flag" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pMutated_Date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="pBase_Survey_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSignature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pSignatureChecked" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Extent_Units" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pPassbook_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="fasali_year" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pahani_year" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="signed_date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ip_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="verifiedby" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dispute_remarks" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dispute_entry_date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCurrentPahaniDetailsForBaseSurno">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sur_No" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentPahaniDetailsForBaseSurnoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentPahaniDetailsForBaseSurnoResult" type="tns:ArrayOfPahani" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurveyNumberDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Dcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSurveyNumberDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSurveyNumberDetailsResult" type="tns:ArrayOfSurvey_No_str" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSurvey_No_str">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Survey_No_str" type="tns:Survey_No_str" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Survey_No_str">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dist_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mand_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vill_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="survey_No" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRORDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="KhataNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRORDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRORDetailsResult" type="tns:ArrayOfROR_Str" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfROR_Str">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ROR_Str" type="tns:ROR_Str" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ROR_Str">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pSerialNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSurvey_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTotal_Extent" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pUncultivated_Land" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pCultivatable_Land" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Nature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTax" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Classification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pWater_Resource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pAyakat_Extent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pKhata_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Extent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pEnjoyment_Nature" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pVillage_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pVillage_Code" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pDelete_Flag" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pMutated_Date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="pBase_Survey_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSignature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pSignatureChecked" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="pAcquiredReason" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Extent_Units" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pPassbook_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Col9" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Col10" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Col11" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Col12" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Col13" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Col14" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="signed_date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ip_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="verifiedby" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPahaniAppeal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pahaniappeal" type="tns:ArrayOfPahaniAppeal" />
+            <s:element minOccurs="1" maxOccurs="1" name="dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPahaniAppeal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="pahaniAppeal" type="tns:pahaniAppeal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="pahaniAppeal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pAppl_No" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pSerial_No" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="pSurvey_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTotal_Extent" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pUncultivated_Land" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pCultivatable_Land" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Nature" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pTax" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pLand_Classification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pWater_Resource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pAyakat_Extent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pKhata_Number" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pOccupant_Extent" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pEnjoyment_Nature" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pOccupant_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pPattadar_Father_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pVillage_Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pVillage_Code" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="pBase_Survey_No" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPahaniAppealResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPahaniAppealResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLECApplicationDetails_Meeseva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pApplicationNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pAadharNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pFatherName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCaste" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pMobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pFarmerType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="preceived_from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="preceived_date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pFreshOrReneval" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pRenwalalLECNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pSLA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lecdeclarant" type="tns:ArrayOfLecdeclarant" />
+            <s:element minOccurs="0" maxOccurs="1" name="lecloan" type="tns:ArrayOfLecloan" />
+            <s:element minOccurs="1" maxOccurs="1" name="dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="urlphoto" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="urlappl" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLecdeclarant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="lecdeclarant" type="tns:lecdeclarant" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="lecdeclarant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DApplication_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DDistrict" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DMandal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DVillage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DSurveyNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DExtentTaken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DExtentAcres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DLandType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DKhataNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="received_from" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="received_date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLecloan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="lecloan" type="tns:lecloan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="lecloan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Application_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LDistrict" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LMandal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LVillage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SurveyNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtentTaken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtentAcres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LandType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KhataNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="received_from" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="received_date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LandOwnerFName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerAdd" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLECApplicationDetails_MeesevaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLECApplicationDetails_MeesevaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApprovedLECDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lecApplication_No" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dcode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApprovedLECDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetApprovedLECDetailsResult" type="tns:ArrayOfLecapproved" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLecapproved">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="lecapproved" type="tns:lecapproved" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="lecapproved">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Application_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="approved_extent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acceptedby" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="accepteddate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetKhathaNoInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Dcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKhathaNoInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKhathaNoInformationResult" type="tns:ArrayOfKhatha_No_str" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfKhatha_No_str">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Khatha_No_str" type="tns:Khatha_No_str" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Khatha_No_str">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="vill_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Khatha_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetKhathaNoInformation_withAdhaar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Dcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKhathaNoInformation_withAdhaarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKhathaNoInformation_withAdhaarResult" type="tns:ArrayOfKhatha_No_withAdhaar" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfKhatha_No_withAdhaar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Khatha_No_withAdhaar" type="tns:Khatha_No_withAdhaar" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Khatha_No_withAdhaar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="vill_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Khatha_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aadhaar" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRORDetailsForPPB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Dcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Mcode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="KhataNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRORDetailsForPPBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRORDetailsForPPBResult" type="tns:ArrayOfROR_Str" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPattadarsForSurveyNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vCOde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="survey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPattadarsForSurveyNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPattadarsForSurveyNumberResult" type="tns:ArrayOfPattadar" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPattadar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Pattadar" type="tns:Pattadar" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Pattadar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="vill_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Khatha_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="F_H_Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfPahani" nillable="true" type="tns:ArrayOfPahani" />
+      <s:element name="ArrayOfSurvey_No_str" nillable="true" type="tns:ArrayOfSurvey_No_str" />
+      <s:element name="ArrayOfROR_Str" nillable="true" type="tns:ArrayOfROR_Str" />
+      <s:element name="ArrayOfLecapproved" nillable="true" type="tns:ArrayOfLecapproved" />
+      <s:element name="ArrayOfKhatha_No_str" nillable="true" type="tns:ArrayOfKhatha_No_str" />
+      <s:element name="ArrayOfKhatha_No_withAdhaar" nillable="true" type="tns:ArrayOfKhatha_No_withAdhaar" />
+      <s:element name="ArrayOfPattadar" nillable="true" type="tns:ArrayOfPattadar" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCurrentPahaniDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentPahaniDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentPahaniDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsForBaseSurnoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentPahaniDetailsForBaseSurno" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsForBaseSurnoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentPahaniDetailsForBaseSurnoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSurveyNumberDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSurveyNumberDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetSurveyNumberDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSurveyNumberDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRORDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRORDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPahaniAppealSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPahaniAppeal" />
+  </wsdl:message>
+  <wsdl:message name="GetPahaniAppealSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPahaniAppealResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLECApplicationDetails_MeesevaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLECApplicationDetails_Meeseva" />
+  </wsdl:message>
+  <wsdl:message name="GetLECApplicationDetails_MeesevaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLECApplicationDetails_MeesevaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedLECDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApprovedLECDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedLECDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApprovedLECDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKhathaNoInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKhathaNoInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformation_withAdhaarSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKhathaNoInformation_withAdhaar" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformation_withAdhaarSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKhathaNoInformation_withAdhaarResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsForPPBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRORDetailsForPPB" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsForPPBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRORDetailsForPPBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPattadarsForSurveyNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPattadarsForSurveyNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetPattadarsForSurveyNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPattadarsForSurveyNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPahani" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsForBaseSurnoHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsForBaseSurnoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPahani" />
+  </wsdl:message>
+  <wsdl:message name="GetSurveyNumberDetailsHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSurveyNumberDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSurvey_No_str" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="KhataNo" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfROR_Str" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedLECDetailsHttpGetIn">
+    <wsdl:part name="lecApplication_No" type="s:string" />
+    <wsdl:part name="dcode" type="s:string" />
+    <wsdl:part name="User_id" type="s:string" />
+    <wsdl:part name="Pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedLECDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLecapproved" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformationHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKhatha_No_str" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformation_withAdhaarHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformation_withAdhaarHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKhatha_No_withAdhaar" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsForPPBHttpGetIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="KhataNo" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsForPPBHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfROR_Str" />
+  </wsdl:message>
+  <wsdl:message name="GetPattadarsForSurveyNumberHttpGetIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="vCOde" type="s:string" />
+    <wsdl:part name="survey" type="s:string" />
+    <wsdl:part name="Dcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPattadarsForSurveyNumberHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPattadar" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPahani" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsForBaseSurnoHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="sur_No" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentPahaniDetailsForBaseSurnoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPahani" />
+  </wsdl:message>
+  <wsdl:message name="GetSurveyNumberDetailsHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="year" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSurveyNumberDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSurvey_No_str" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="KhataNo" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfROR_Str" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedLECDetailsHttpPostIn">
+    <wsdl:part name="lecApplication_No" type="s:string" />
+    <wsdl:part name="dcode" type="s:string" />
+    <wsdl:part name="User_id" type="s:string" />
+    <wsdl:part name="Pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetApprovedLECDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLecapproved" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformationHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKhatha_No_str" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformation_withAdhaarHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetKhathaNoInformation_withAdhaarHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKhatha_No_withAdhaar" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsForPPBHttpPostIn">
+    <wsdl:part name="Dcode" type="s:string" />
+    <wsdl:part name="Mcode" type="s:string" />
+    <wsdl:part name="VCode" type="s:string" />
+    <wsdl:part name="KhataNo" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRORDetailsForPPBHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfROR_Str" />
+  </wsdl:message>
+  <wsdl:message name="GetPattadarsForSurveyNumberHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="vCOde" type="s:string" />
+    <wsdl:part name="survey" type="s:string" />
+    <wsdl:part name="Dcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPattadarsForSurveyNumberHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPattadar" />
+  </wsdl:message>
+  <wsdl:portType name="WSPahaniSoap">
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani as an XML array for current year.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrentPahaniDetailsSoapIn" />
+      <wsdl:output message="tns:GetCurrentPahaniDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani for base survey no as an XML array for current year.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrentPahaniDetailsForBaseSurnoSoapIn" />
+      <wsdl:output message="tns:GetCurrentPahaniDetailsForBaseSurnoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an XML Array of survey numbers for the selected village</wsdl:documentation>
+      <wsdl:input message="tns:GetSurveyNumberDetailsSoapIn" />
+      <wsdl:output message="tns:GetSurveyNumberDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns R.O.R(1B) as an XML Array for given Khata Number</wsdl:documentation>
+      <wsdl:input message="tns:GetRORDetailsSoapIn" />
+      <wsdl:output message="tns:GetRORDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPahaniAppeal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert Pahani/Adangal Appeals(Mandal Code added in insert) </wsdl:documentation>
+      <wsdl:input message="tns:GetPahaniAppealSoapIn" />
+      <wsdl:output message="tns:GetPahaniAppealSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLECApplicationDetails_Meeseva">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets LEC application details</wsdl:documentation>
+      <wsdl:input message="tns:GetLECApplicationDetails_MeesevaSoapIn" />
+      <wsdl:output message="tns:GetLECApplicationDetails_MeesevaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Post Approved LEC Details </wsdl:documentation>
+      <wsdl:input message="tns:GetApprovedLECDetailsSoapIn" />
+      <wsdl:output message="tns:GetApprovedLECDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <wsdl:input message="tns:GetKhathaNoInformationSoapIn" />
+      <wsdl:output message="tns:GetKhathaNoInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <wsdl:input message="tns:GetKhathaNoInformation_withAdhaarSoapIn" />
+      <wsdl:output message="tns:GetKhathaNoInformation_withAdhaarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <wsdl:input message="tns:GetRORDetailsForPPBSoapIn" />
+      <wsdl:output message="tns:GetRORDetailsForPPBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <wsdl:input message="tns:GetPattadarsForSurveyNumberSoapIn" />
+      <wsdl:output message="tns:GetPattadarsForSurveyNumberSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSPahaniHttpGet">
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani as an XML array for current year.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrentPahaniDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetCurrentPahaniDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani for base survey no as an XML array for current year.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrentPahaniDetailsForBaseSurnoHttpGetIn" />
+      <wsdl:output message="tns:GetCurrentPahaniDetailsForBaseSurnoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an XML Array of survey numbers for the selected village</wsdl:documentation>
+      <wsdl:input message="tns:GetSurveyNumberDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetSurveyNumberDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns R.O.R(1B) as an XML Array for given Khata Number</wsdl:documentation>
+      <wsdl:input message="tns:GetRORDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetRORDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Post Approved LEC Details </wsdl:documentation>
+      <wsdl:input message="tns:GetApprovedLECDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetApprovedLECDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <wsdl:input message="tns:GetKhathaNoInformationHttpGetIn" />
+      <wsdl:output message="tns:GetKhathaNoInformationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <wsdl:input message="tns:GetKhathaNoInformation_withAdhaarHttpGetIn" />
+      <wsdl:output message="tns:GetKhathaNoInformation_withAdhaarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <wsdl:input message="tns:GetRORDetailsForPPBHttpGetIn" />
+      <wsdl:output message="tns:GetRORDetailsForPPBHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <wsdl:input message="tns:GetPattadarsForSurveyNumberHttpGetIn" />
+      <wsdl:output message="tns:GetPattadarsForSurveyNumberHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSPahaniHttpPost">
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani as an XML array for current year.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrentPahaniDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetCurrentPahaniDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns pahani for base survey no as an XML array for current year.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrentPahaniDetailsForBaseSurnoHttpPostIn" />
+      <wsdl:output message="tns:GetCurrentPahaniDetailsForBaseSurnoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an XML Array of survey numbers for the selected village</wsdl:documentation>
+      <wsdl:input message="tns:GetSurveyNumberDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetSurveyNumberDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns R.O.R(1B) as an XML Array for given Khata Number</wsdl:documentation>
+      <wsdl:input message="tns:GetRORDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetRORDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Post Approved LEC Details </wsdl:documentation>
+      <wsdl:input message="tns:GetApprovedLECDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetApprovedLECDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <wsdl:input message="tns:GetKhathaNoInformationHttpPostIn" />
+      <wsdl:output message="tns:GetKhathaNoInformationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <wsdl:input message="tns:GetKhathaNoInformation_withAdhaarHttpPostIn" />
+      <wsdl:output message="tns:GetKhathaNoInformation_withAdhaarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <wsdl:input message="tns:GetRORDetailsForPPBHttpPostIn" />
+      <wsdl:output message="tns:GetRORDetailsForPPBHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <wsdl:input message="tns:GetPattadarsForSurveyNumberHttpPostIn" />
+      <wsdl:output message="tns:GetPattadarsForSurveyNumberHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSPahaniSoap" type="tns:WSPahaniSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <soap:operation soapAction="http://localhost/uatwebland/GetCurrentPahaniDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <soap:operation soapAction="http://localhost/uatwebland/GetCurrentPahaniDetailsForBaseSurno" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <soap:operation soapAction="http://localhost/uatwebland/GetSurveyNumberDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <soap:operation soapAction="http://localhost/uatwebland/GetRORDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPahaniAppeal">
+      <soap:operation soapAction="http://localhost/uatwebland/GetPahaniAppeal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLECApplicationDetails_Meeseva">
+      <soap:operation soapAction="http://localhost/uatwebland/GetLECApplicationDetails_Meeseva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <soap:operation soapAction="http://localhost/uatwebland/GetApprovedLECDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <soap:operation soapAction="http://localhost/uatwebland/GetKhathaNoInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <soap:operation soapAction="http://localhost/uatwebland/GetKhathaNoInformation_withAdhaar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <soap:operation soapAction="http://localhost/uatwebland/GetRORDetailsForPPB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <soap:operation soapAction="http://localhost/uatwebland/GetPattadarsForSurveyNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSPahaniSoap12" type="tns:WSPahaniSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetCurrentPahaniDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetCurrentPahaniDetailsForBaseSurno" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetSurveyNumberDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetRORDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPahaniAppeal">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetPahaniAppeal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLECApplicationDetails_Meeseva">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetLECApplicationDetails_Meeseva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetApprovedLECDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetKhathaNoInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetKhathaNoInformation_withAdhaar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetRORDetailsForPPB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <soap12:operation soapAction="http://localhost/uatwebland/GetPattadarsForSurveyNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSPahaniHttpGet" type="tns:WSPahaniHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <http:operation location="/GetCurrentPahaniDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <http:operation location="/GetCurrentPahaniDetailsForBaseSurno" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <http:operation location="/GetSurveyNumberDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <http:operation location="/GetRORDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <http:operation location="/GetApprovedLECDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <http:operation location="/GetKhathaNoInformation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <http:operation location="/GetKhathaNoInformation_withAdhaar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <http:operation location="/GetRORDetailsForPPB" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <http:operation location="/GetPattadarsForSurveyNumber" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSPahaniHttpPost" type="tns:WSPahaniHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetCurrentPahaniDetails">
+      <http:operation location="/GetCurrentPahaniDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentPahaniDetailsForBaseSurno">
+      <http:operation location="/GetCurrentPahaniDetailsForBaseSurno" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyNumberDetails">
+      <http:operation location="/GetSurveyNumberDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetails">
+      <http:operation location="/GetRORDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApprovedLECDetails">
+      <http:operation location="/GetApprovedLECDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation">
+      <http:operation location="/GetKhathaNoInformation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKhathaNoInformation_withAdhaar">
+      <http:operation location="/GetKhathaNoInformation_withAdhaar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRORDetailsForPPB">
+      <http:operation location="/GetRORDetailsForPPB" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPattadarsForSurveyNumber">
+      <http:operation location="/GetPattadarsForSurveyNumber" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSPahani">
+    <wsdl:port name="WSPahaniSoap" binding="tns:WSPahaniSoap">
+      <soap:address location="http://webland.telangana.gov.in/wspahani.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSPahaniSoap12" binding="tns:WSPahaniSoap12">
+      <soap12:address location="http://webland.telangana.gov.in/wspahani.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSPahaniHttpGet" binding="tns:WSPahaniHttpGet">
+      <http:address location="http://webland.telangana.gov.in/wspahani.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSPahaniHttpPost" binding="tns:WSPahaniHttpPost">
+      <http:address location="http://webland.telangana.gov.in/wspahani.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
